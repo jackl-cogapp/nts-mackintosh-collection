@@ -14,21 +14,5 @@
 	"footer.contact": "Contact",
 	"sitemap.label": "Information Architecture",
 	"sitemap.heading": "Site Map",
-	"sitemap.description": "Page hierarchy and navigation structure",
-	"feature-status.label": "Feature inventory",
-	"feature-status.heading": "Feature Status",
-	"feature-status.description": "Every section across every wireframe, with MVP / post-MVP scope and rationale. Derived from scope annotations.",
-	"feature-status.filterAll": "All",
-	"feature-status.filterMvp": "MVP only",
-	"feature-status.filterPostMvp": "Post-MVP only",
-	"feature-status.colSection": "Section",
-	"feature-status.colPage": "Page",
-	"feature-status.colStatus": "Status",
-	"feature-status.colNotes": "Notes / rationale",
-	"feature-status.colTracker": "Tracker",
-	"feature-status.statMvp": "MVP",
-	"feature-status.statPostMvp": "Post-MVP",
-	"feature-status.statTotal": "Total sections",
-	"feature-status.statPagesMvp": "MVP pages",
-	"feature-status.empty": "No sections match the current filter."
+	"sitemap.description": "Page hierarchy and navigation structure"
 }

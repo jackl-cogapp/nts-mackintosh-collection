@@ -93,14 +93,6 @@ export const pages: WireframePage[] = [
 
 	// ── Templates ──────────────────────────────────────────────────────
 	{
-		id: "feature-status",
-		title: "Feature Status",
-		description:
-			"Cross-page MVP / post-MVP feature inventory derived from scope annotations",
-		status: "wip",
-		group: "Templates",
-	},
-	{
 		id: "sitemap",
 		title: "Site Map",
 		description: "Information architecture, page hierarchy and navigation structure",
@@ -134,7 +126,6 @@ export const navigation: NavNode[] = [
 			{ label: "Collection Search", href: "/crm-search" },
 		],
 	},
-	{ label: "Feature Status", href: "/feature-status" },
 	{ label: "Site Map", href: "/sitemap" },
 ];
 
