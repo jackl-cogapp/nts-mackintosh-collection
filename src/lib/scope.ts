@@ -1,0 +1,63 @@
+export interface ScopeEntry {
+	mvp: boolean;
+	note?: string;
+	issueUrl?: string;
+}
+
+export type IssueTracker = "linear" | "jira";
+export const issueTracker: IssueTracker = "linear";
+
+const linear = (id: string) => `https://linear.app/team/issue/${id}`;
+const issue = linear;
+
+export const scope: Record<string, ScopeEntry> = {
+	"explore-collections/Page header": { mvp: false, issueUrl: issue("MAC-1") },
+	"explore-collections/Collection cards": { mvp: false, issueUrl: issue("MAC-2") },
+	"collection-home/Hero": { mvp: false, issueUrl: issue("MAC-3") },
+	"collection-home/Collections search": { mvp: false, issueUrl: issue("MAC-4") },
+	"collection-home/Explore by theme": { mvp: false, note: "Bubble sizing TBD", issueUrl: issue("MAC-5") },
+	"collection-home/Explore iconic works": { mvp: false, issueUrl: issue("MAC-6") },
+	"collection-home-mvp/Hero": { mvp: true, issueUrl: issue("MAC-3") },
+	"collection-home-mvp/Collections search": { mvp: true, issueUrl: issue("MAC-4") },
+	"collection-home-mvp/Explore iconic works": { mvp: true, issueUrl: issue("MAC-6") },
+	"timeline/Page header": { mvp: false, issueUrl: issue("MAC-7") },
+	"timeline/Timeline": { mvp: false, note: "Content and dates to be confirmed", issueUrl: issue("MAC-8") },
+	"map/Page header": { mvp: false, issueUrl: issue("MAC-9") },
+	"map/Map explorer": { mvp: false, note: "Map provider TBD", issueUrl: issue("MAC-10") },
+	"crm-item/Image viewer": { mvp: true, issueUrl: issue("CRM-5") },
+	"crm-item/Key details": { mvp: true, issueUrl: issue("CRM-6") },
+	"crm-item/Description": { mvp: true, issueUrl: issue("CRM-7") },
+	"crm-item/Object information": { mvp: true, issueUrl: issue("CRM-8") },
+	"crm-search/Hero": { mvp: true, issueUrl: issue("CRM-1") },
+	"crm-search/Search bar": { mvp: true, issueUrl: issue("CRM-2") },
+	"crm-search/Filters": { mvp: true, issueUrl: issue("CRM-3") },
+	"crm-search/Results grid": { mvp: true, issueUrl: issue("CRM-4") },
+};
+
+export function getAnnotation(pageId: string | undefined, label: string): ScopeEntry | undefined {
+	if (!pageId) return undefined;
+	return scope[`${pageId}/${label}`];
+}
+
+export function isPageMvp(pageId: string): boolean {
+	const prefix = `${pageId}/`;
+	return Object.entries(scope).some(([key, entry]) => key.startsWith(prefix) && entry.mvp);
+}
+
+export interface ScopeRow extends ScopeEntry {
+	pageId: string;
+	label: string;
+	key: string;
+}
+
+export function listScopeRows(): ScopeRow[] {
+	return Object.entries(scope).map(([key, entry]) => {
+		const slash = key.indexOf("/");
+		return {
+			pageId: slash >= 0 ? key.slice(0, slash) : key,
+			label: slash >= 0 ? key.slice(slash + 1) : "",
+			key,
+			...entry,
+		};
+	});
+}
