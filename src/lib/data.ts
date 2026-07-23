@@ -60,7 +60,7 @@ export const pages: WireframePage[] = [
 	},
 	{
 		id: "explore-collections",
-		title: "Burns/Mackintosh Picker",
+		title: "Collections Hub",
 		description:
 			"Landing page listing NTS online collections — entry point for Robert Burns and Mackintosh",
 		status: "wip",
