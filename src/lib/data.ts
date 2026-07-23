@@ -33,14 +33,14 @@ export interface WireframePage {
 }
 
 export const pages: WireframePage[] = [
-	// ── Mackintosh Collection ────────────────────────────────────────
+	// ── MVP ────────────────────────────────────────────────────────────
 	{
 		id: "collection-home-mvp",
 		title: "Mackintosh Collection Home — MVP",
 		description:
 			"Collection homepage with hero, search widget, theme bubble explorer, and iconic works strip",
 		status: "wip",
-		group: "Mackintosh Collection",
+		group: "MVP",
 	},
 	{
 		id: "crm-item",
@@ -48,7 +48,7 @@ export const pages: WireframePage[] = [
 		description:
 			"Collection object detail page — image viewer, key details sidebar, description, and object information",
 		status: "wip",
-		group: "Mackintosh Collection",
+		group: "MVP",
 	},
 	{
 		id: "crm-search",
@@ -56,15 +56,17 @@ export const pages: WireframePage[] = [
 		description:
 			"Charles Rennie Mackintosh collection search page with faceted sidebar filters and card grid",
 		status: "wip",
-		group: "Mackintosh Collection",
+		group: "MVP",
 	},
+
+	// ── Ideas ──────────────────────────────────────────────────────────
 	{
 		id: "explore-collections",
 		title: "Collections Hub",
 		description:
 			"Landing page listing NTS online collections — entry point for Robert Burns and Mackintosh",
 		status: "wip",
-		group: "Mackintosh Collection",
+		group: "Ideas",
 	},
 	{
 		id: "collection-home",
@@ -72,7 +74,7 @@ export const pages: WireframePage[] = [
 		description:
 			"Collection homepage with hero, search widget, theme bubble explorer, and iconic works strip",
 		status: "wip",
-		group: "Mackintosh Collection",
+		group: "Ideas",
 	},
 	{
 		id: "timeline",
@@ -80,7 +82,7 @@ export const pages: WireframePage[] = [
 		description:
 			"Zigzag life-and-work timeline pairing dated biographical stops with related artworks",
 		status: "wip",
-		group: "Mackintosh Collection",
+		group: "Ideas",
 	},
 	{
 		id: "map",
@@ -88,20 +90,18 @@ export const pages: WireframePage[] = [
 		description:
 			"Interactive map of Mackintosh locations across Scotland/UK and Europe with clickable pins",
 		status: "wip",
-		group: "Mackintosh Collection",
+		group: "Ideas",
 	},
-
-	// ── Templates ──────────────────────────────────────────────────────
 	{
 		id: "sitemap",
 		title: "Site Map",
 		description: "Information architecture, page hierarchy and navigation structure",
 		status: "wip",
-		group: "Templates",
+		group: "Ideas",
 	},
 ];
 
-export const PAGE_GROUPS = ["Mackintosh Collection", "Templates"] as const;
+export const PAGE_GROUPS = ["MVP", "Ideas"] as const;
 
 // ── Navigation tree ──────────────────────────────────────────────────
 
