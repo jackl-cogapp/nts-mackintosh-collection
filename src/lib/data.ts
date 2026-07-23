@@ -92,13 +92,6 @@ export const pages: WireframePage[] = [
 		status: "wip",
 		group: "Ideas",
 	},
-	{
-		id: "sitemap",
-		title: "Site Map",
-		description: "Information architecture, page hierarchy and navigation structure",
-		status: "wip",
-		group: "Ideas",
-	},
 ];
 
 export const PAGE_GROUPS = ["MVP", "Ideas"] as const;
@@ -126,7 +119,6 @@ export const navigation: NavNode[] = [
 			{ label: "Collection Search", href: "/crm-search" },
 		],
 	},
-	{ label: "Site Map", href: "/sitemap" },
 ];
 
 // ── Footer link groups ───────────────────────────────────────────────
