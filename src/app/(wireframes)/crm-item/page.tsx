@@ -14,8 +14,8 @@ import CrmItemPostMvp from "./CrmItemPostMvp";
 
 const VARIATIONS = [
 	{ key: "burns-style", label: "MVP" },
-	{ key: "tombstone", label: "Tombstone" },
 	{ key: "post-mvp", label: "Post-MVP" },
+	{ key: "tombstone", label: "Tombstone" },
 ] as const;
 
 // ── Mock item ───────────────────────────────────────────────────────────
