@@ -31,6 +31,11 @@ export const scope: Record<string, ScopeEntry> = {
 	"crm-search/Search bar": { mvp: true, issueUrl: issue("CRM-2") },
 	"crm-search/Filters": { mvp: true, issueUrl: issue("CRM-3") },
 	"crm-search/Results grid": { mvp: true, issueUrl: issue("CRM-4") },
+	// "UI Tweaks" tab on /crm-search — proposed changes, not in MVP scope
+	"crm-search-ui-tweaks/Hero": { mvp: true, issueUrl: issue("CRM-1") },
+	"crm-search-ui-tweaks/Search bar": { mvp: false, note: "Proposed UI tweak: narrower search bar", issueUrl: issue("CRM-2") },
+	"crm-search-ui-tweaks/Filters": { mvp: false, note: "Proposed UI tweak: new filter set, nested locations", issueUrl: issue("CRM-3") },
+	"crm-search-ui-tweaks/Results grid": { mvp: false, note: "Proposed UI tweak: count/sort row, filter chips, card fields", issueUrl: issue("CRM-4") },
 };
 
 export function getAnnotation(pageId: string | undefined, label: string): ScopeEntry | undefined {
