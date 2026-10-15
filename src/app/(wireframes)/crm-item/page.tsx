@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useState } from "react";
+import { type ReactNode, Suspense, useState } from "react";
 import {
 	Container,
 	ImagePlaceholder,
@@ -39,6 +39,10 @@ const ITEM = {
 	materials: ["Sycamore", "Mother of Pearl"],
 	dimensions: { height: "140 cm", width: null, depth: null },
 	themes: [],
+	associatedPeople: ["Walter Blackie"],
+	provenance: "Commissioned by Walter Blackie for The Hill House, Helensburgh; remained in the house until it passed to the National Trust for Scotland.",
+	acquisitionDate: "1982",
+	isArchive: false,
 	thumbnails: 3,
 };
 
@@ -78,33 +82,69 @@ function ObjectInfoField({ label, children }: { label: string; children: React.R
 	);
 }
 
+function LinkList({ items }: { items: ReactNode[] }) {
+	return items.length > 0 ? (
+		<>
+			{items.map((item, i) => (
+				<span key={i}>
+					{item}
+					{i < items.length - 1 ? ", " : ""}
+				</span>
+			))}
+		</>
+	) : <Dash />;
+}
+
+function FieldLink({ children }: { children: ReactNode }) {
+	return <a href="#" className="underline text-gray-700 hover:text-black">{children}</a>;
+}
+
+// MVP object information: four headline fields, the rest behind "See more"
 function ObjectInfoFields() {
+	const [expanded, setExpanded] = useState(false);
 	return (
-		<div className="grid grid-cols-2 gap-x-8 gap-y-6 max-w-prose">
-			<ObjectInfoField label="Category">
-				{ITEM.category
-					? <a href="#" className="underline text-gray-700 hover:text-black">{ITEM.category}</a>
-					: <Dash />}
-			</ObjectInfoField>
-			<ObjectInfoField label="Material/s">
-				{ITEM.materials.length > 0 ? ITEM.materials.map((m, i) => (
-					<span key={i}>
-						<a href="#" className="underline text-gray-700 hover:text-black">{m}</a>
-						{i < ITEM.materials.length - 1 ? ", " : ""}
-					</span>
-				)) : <Dash />}
-			</ObjectInfoField>
-			<ObjectInfoField label="Measurements">
-				<Measurements />
-			</ObjectInfoField>
-			<ObjectInfoField label="Themes">
-				{ITEM.themes.length > 0 ? ITEM.themes.map((th, i) => (
-					<span key={i}>
-						<a href="#" className="underline text-gray-700 hover:text-black">{th}</a>
-						{i < ITEM.themes.length - 1 ? ", " : ""}
-					</span>
-				)) : <Dash />}
-			</ObjectInfoField>
+		<div className="max-w-prose">
+			<div className="grid grid-cols-2 gap-x-8 gap-y-6">
+				<ObjectInfoField label="Date">{ITEM.date}</ObjectInfoField>
+				<ObjectInfoField label="Maker/Creator">
+					<LinkList items={ITEM.creators.map((c) => <><FieldLink>{c.name}</FieldLink> ({c.role})</>)} />
+				</ObjectInfoField>
+				<ObjectInfoField label="Materials">
+					<LinkList items={ITEM.materials.map((m) => <FieldLink>{m}</FieldLink>)} />
+				</ObjectInfoField>
+				<ObjectInfoField label="Measurements">
+					<Measurements />
+				</ObjectInfoField>
+			</div>
+
+			{expanded && (
+				<div className="mt-6 grid grid-cols-2 gap-x-8 gap-y-6 border-t border-gray-200 pt-6">
+					<ObjectInfoField label="On display">{ITEM.onDisplay ? "Yes" : "No"}</ObjectInfoField>
+					<ObjectInfoField label="Category">
+						{ITEM.category ? <FieldLink>{ITEM.category}</FieldLink> : <Dash />}
+					</ObjectInfoField>
+					<ObjectInfoField label="Themes">
+						<LinkList items={ITEM.themes.map((th) => <FieldLink>{th}</FieldLink>)} />
+					</ObjectInfoField>
+					<ObjectInfoField label="Associated person">
+						<LinkList items={ITEM.associatedPeople.map((ap) => <FieldLink>{ap}</FieldLink>)} />
+					</ObjectInfoField>
+					<div className="col-span-2">
+						<ObjectInfoField label="Provenance">{ITEM.provenance || <Dash />}</ObjectInfoField>
+					</div>
+					<ObjectInfoField label="Acquisition date">{ITEM.acquisitionDate || <Dash />}</ObjectInfoField>
+					<ObjectInfoField label={ITEM.isArchive ? "Archive number" : "Object number"}>{ITEM.objectNumber}</ObjectInfoField>
+				</div>
+			)}
+
+			<button
+				type="button"
+				onClick={() => setExpanded((e) => !e)}
+				aria-expanded={expanded}
+				className="mt-6 flex items-center gap-1 font-mono text-meta text-gray-600 underline hover:text-black"
+			>
+				{expanded ? "▲ See less" : "▼ See more"}
+			</button>
 		</div>
 	);
 }
