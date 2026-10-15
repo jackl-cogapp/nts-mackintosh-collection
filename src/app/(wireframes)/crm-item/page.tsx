@@ -99,7 +99,7 @@ function FieldLink({ children }: { children: ReactNode }) {
 	return <a href="#" className="underline text-gray-700 hover:text-black">{children}</a>;
 }
 
-// MVP object information: four headline fields, the rest behind "See more"
+// MVP object information: four headline fields, the rest behind "More details"
 function ObjectInfoFields() {
 	const [expanded, setExpanded] = useState(false);
 	return (
@@ -143,7 +143,7 @@ function ObjectInfoFields() {
 				aria-expanded={expanded}
 				className="mt-6 flex items-center gap-1 font-mono text-meta text-gray-600 underline hover:text-black"
 			>
-				{expanded ? "▲ See less" : "▼ See more"}
+				{expanded ? "▲ Fewer details" : "▼ More details"}
 			</button>
 		</div>
 	);
