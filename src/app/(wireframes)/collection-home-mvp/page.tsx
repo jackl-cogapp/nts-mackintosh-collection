@@ -31,7 +31,7 @@ function CollectionHomeMvpContent() {
 								NTS Collections
 							</p>
 							<h1 className="mt-2 font-mono text-page font-semibold leading-tight tracking-tight">
-								Charles Rennie Mackintosh
+								The Mackintosh Collection
 							</h1>
 							<p className="mt-2 font-mono text-body text-white/80">
 								Explore the art, architecture and design of Scotland's most
