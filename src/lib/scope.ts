@@ -19,7 +19,6 @@ export const scope: Record<string, ScopeEntry> = {
 	"collection-home/Explore iconic works": { mvp: false, issueUrl: issue("MAC-6") },
 	"collection-home-mvp/Hero": { mvp: true, issueUrl: issue("MAC-3") },
 	"collection-home-mvp/Collections search": { mvp: true, issueUrl: issue("MAC-4") },
-	"collection-home-mvp/Explore iconic works": { mvp: true, issueUrl: issue("MAC-6") },
 	"timeline/Page header": { mvp: false, issueUrl: issue("MAC-7") },
 	"timeline/Timeline": { mvp: false, note: "Content and dates to be confirmed", issueUrl: issue("MAC-8") },
 	"map/Page header": { mvp: false, issueUrl: issue("MAC-9") },

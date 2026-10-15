@@ -1,40 +1,16 @@
 "use client";
 
-import { Suspense, useState } from "react";
+import { Suspense } from "react";
 import {
 	Container,
 	ImagePlaceholder,
-	SectionLabel,
 	WireframeSection,
 } from "@/components/wireframe";
 import NtsFooter from "@/components/wireframe/NtsFooter";
 import NtsHeader from "@/components/wireframe/NtsHeader";
 import { ScopePage } from "@/providers/ScopeProvider";
 
-const FILTERS = ["All", "Architecture", "Design", "Art", "Glasswork", "Furniture"] as const;
-type Filter = (typeof FILTERS)[number];
-
-const ICONIC_WORKS: { title: string; meta: string; category: Filter }[] = [
-	{ title: "Glasgow School of Art", meta: "Architecture, 1897–1909", category: "Architecture" },
-	{ title: "Hill House", meta: "Architecture, 1902–1904", category: "Architecture" },
-	{ title: "Willow Tea Rooms", meta: "Architecture, 1903", category: "Architecture" },
-	{ title: "The Wassail", meta: "Art, 1900", category: "Art" },
-	{ title: "Rose Motif", meta: "Art, 1902", category: "Art" },
-	{ title: "Part Seen, Part Imagined", meta: "Art, 1896", category: "Art" },
-	{ title: "Highback Chair", meta: "Furniture, 1897", category: "Furniture" },
-	{ title: "The Oval Table", meta: "Furniture, 1903", category: "Furniture" },
-	{ title: "Writing Desk", meta: "Furniture, 1904", category: "Furniture" },
-	{ title: "Rose Window, Hill House", meta: "Glasswork, 1904", category: "Glasswork" },
-	{ title: "Willow Tea Rooms Door Panel", meta: "Glasswork, 1903", category: "Glasswork" },
-	{ title: "Cabinet with Mirror Panels", meta: "Design, 1902", category: "Design" },
-	{ title: "Textile Pattern — Stylised Tulip", meta: "Design, 1915", category: "Design" },
-];
-
 function CollectionHomeMvpContent() {
-	const [activeFilter, setActiveFilter] = useState<Filter>("All");
-	const [showAll, setShowAll] = useState(false);
-	const filtered = activeFilter === "All" ? ICONIC_WORKS : ICONIC_WORKS.filter(w => w.category === activeFilter);
-	const visible = filtered.slice(0, 5);
 	return (
 		<ScopePage id="collection-home-mvp">
 			<div className="min-h-screen bg-white">
@@ -88,74 +64,17 @@ function CollectionHomeMvpContent() {
 								<span className="font-mono text-body text-gray-500">⌕</span>
 							</div>
 						</div>
-						<p className="mt-2 text-center font-mono text-meta text-gray-400 underline">
-							Advanced search
-						</p>
+						<div className="mt-4 flex justify-center gap-6 font-mono text-meta text-gray-400 underline">
+							<p>Show me a random object!</p>
+							<p>Advanced search</p>
+						</div>
 					</Container>
 				</WireframeSection>
 
-				{/* Curated content placeholder — above iconic works */}
-				<WireframeSection label="Curated content (above)" className="border-b border-gray-200 py-10">
+				{/* Curated content placeholder — deliberately tall to reserve space for content still to be decided */}
+				<WireframeSection label="Curated content" className="py-10">
 					<Container size="md">
-						<div className="flex items-center justify-center border-2 border-red-500 py-12">
-							<p className="font-mono text-meta text-gray-400">Curated Content TBD</p>
-						</div>
-					</Container>
-				</WireframeSection>
-
-				{/* Iconic works */}
-				<WireframeSection label="Explore iconic works" className="border-b border-gray-200 py-16">
-					<Container size="xl">
-						<SectionLabel className="mb-4">Explore Iconic Works</SectionLabel>
-						{/* Filter facets — horizontal row */}
-						<div className="mb-6 flex flex-wrap items-center gap-2">
-							{FILTERS.map((f) => (
-								<button
-									key={f}
-									type="button"
-									onClick={() => { setActiveFilter(f); setShowAll(false); }}
-									className={`border px-3 py-1.5 font-mono text-label uppercase tracking-[0.08em] transition-colors ${
-										activeFilter === f
-											? "border-gray-800 bg-gray-800 text-white"
-											: "border-gray-300 text-gray-500 hover:border-gray-500 hover:text-gray-800"
-									}`}
-								>
-									{f}
-								</button>
-							))}
-						</div>
-						{/* Artwork cards */}
-						<div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-							{visible.map((work) => (
-								<div
-									key={work.title}
-									className="flex flex-col border border-gray-300 hover:border-gray-500"
-								>
-									<ImagePlaceholder aspect="4/3" label="[Artwork]" />
-									<div className="p-2">
-										<p className="font-mono text-label font-medium text-gray-700">
-											{work.title}
-										</p>
-										<p className="mt-0.5 font-mono text-label text-gray-400">
-											{work.meta}
-										</p>
-									</div>
-								</div>
-							))}
-						</div>
-						<a
-							href="/collection-search"
-							className="mt-4 inline-block border border-gray-400 px-4 py-2 font-mono text-label uppercase tracking-[0.08em] text-gray-600 hover:border-gray-700 hover:text-gray-900"
-						>
-							See more →
-						</a>
-					</Container>
-				</WireframeSection>
-
-				{/* Curated content placeholder — below iconic works */}
-				<WireframeSection label="Curated content (below)" className="border-b border-gray-200 py-10">
-					<Container size="md">
-						<div className="flex items-center justify-center border-2 border-red-500 py-12">
+						<div className="flex h-[800px] items-center justify-center border-2 border-red-500">
 							<p className="font-mono text-meta text-gray-400">Curated Content TBD</p>
 						</div>
 					</Container>
@@ -182,6 +101,9 @@ function CollectionHomeMvpContent() {
 							in the future. Some items in the collection were donated on behalf
 							of the Friends of the Hunterian Museum in 2019.
 						</p>
+						{/* Funder logo */}
+						<ImagePlaceholder aspect="2/1" label="[NLHF logo]" className="mx-auto mt-8 w-48" />
+						<p className="mt-2 text-center font-mono text-label text-gray-400">National Lottery Heritage Fund</p>
 					</Container>
 				</WireframeSection>
 

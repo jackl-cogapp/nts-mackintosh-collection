@@ -46,47 +46,61 @@ interface CRMItem {
 	collectionType: CollectionType;
 	objectType: ObjectType;
 	title: string;
-	creator: Creator;
+	creators: Creator[];
+	designers: string[];
+	makers: string[];
 	dateCreated: string;
 	accessionNumber: string;
 	location: Location;
 	hasImage: boolean;
+	materials: string[];
+	associatedPeople: string[];
 	onDisplay: boolean;
 }
 
 // ── Mock data ───────────────────────────────────────────────────────────
 
 const ALL_ITEMS: CRMItem[] = [
-	{ id: "crm01", collectionType: "Architecture", objectType: "Architectural Drawing", title: "Glasgow School of Art, North Elevation", creator: "Charles Rennie Mackintosh", dateCreated: "1897", accessionNumber: "GSAA/DC/002/001", location: "Glasgow School of Art", hasImage: true, onDisplay: true },
-	{ id: "crm02", collectionType: "Fine Art", objectType: "Watercolour", title: "Pinks", creator: "Charles Rennie Mackintosh", dateCreated: "1915", accessionNumber: "GLAHA/F/0234", location: "Hunterian Museum", hasImage: true, onDisplay: true },
-	{ id: "crm03", collectionType: "Decorative Art", objectType: "Furniture", title: "Ladder-back Chair", creator: "Charles Rennie Mackintosh", dateCreated: "1903", accessionNumber: "HH/F/0042", location: "Hill House", hasImage: true, onDisplay: true },
-	{ id: "crm04", collectionType: "Fine Art", objectType: "Watercolour", title: "Anemones", creator: "Margaret Macdonald Mackintosh", dateCreated: "1916", accessionNumber: "GLAHA/F/0301", location: "Hunterian Museum", hasImage: true, onDisplay: false },
-	{ id: "crm05", collectionType: "Architecture", objectType: "Architectural Drawing", title: "Hill House, Helensburgh — Ground Floor Plan", creator: "Charles Rennie Mackintosh", dateCreated: "1902", accessionNumber: "GSAA/DC/012/003", location: "Hill House", hasImage: false, onDisplay: false },
-	{ id: "crm06", collectionType: "Decorative Art", objectType: "Textile", title: "Embroidered Panel with Rose Motif", creator: "Margaret Macdonald Mackintosh", dateCreated: "1902", accessionNumber: "HH/T/0011", location: "Hill House", hasImage: true, onDisplay: true },
-	{ id: "crm07", collectionType: "Archive", objectType: "Letter", title: "Letter from CRM to Hermann Muthesius regarding the Haus eines Kunstfreundes", creator: "Charles Rennie Mackintosh", dateCreated: "1901", accessionNumber: "GSAA/AR/1901/047", location: "Glasgow School of Art", hasImage: false, onDisplay: false },
-	{ id: "crm08", collectionType: "Fine Art", objectType: "Watercolour", title: "Holy Island", creator: "Charles Rennie Mackintosh", dateCreated: "1901", accessionNumber: "GLAHA/F/0189", location: "Hunterian Museum", hasImage: true, onDisplay: false },
-	{ id: "crm09", collectionType: "Decorative Art", objectType: "Metalwork", title: "Silver Candlestick", creator: "Charles Rennie Mackintosh", dateCreated: "1896", accessionNumber: "GLAHA/D/0055", location: "Hunterian Museum", hasImage: true, onDisplay: true },
-	{ id: "crm10", collectionType: "Archive", objectType: "Photograph", title: "Interior of the Willow Tea Rooms, Sauchiehall Street", creator: "Unknown", dateCreated: "c.1904", accessionNumber: "WTR/PH/0003", location: "Willow Tea Rooms", hasImage: true, onDisplay: false },
-	{ id: "crm11", collectionType: "Architecture", objectType: "Architectural Drawing", title: "Willow Tea Rooms — Section through the Room de Luxe", creator: "Charles Rennie Mackintosh", dateCreated: "1903", accessionNumber: "GSAA/DC/021/009", location: "Willow Tea Rooms", hasImage: true, onDisplay: false },
-	{ id: "crm12", collectionType: "Fine Art", objectType: "Poster", title: "The Scottish Musical Review", creator: "Charles Rennie Mackintosh", dateCreated: "1896", accessionNumber: "GLAHA/F/0021", location: "Hunterian Museum", hasImage: true, onDisplay: true },
-	{ id: "crm13", collectionType: "Decorative Art", objectType: "Furniture", title: "Writing Cabinet", creator: "Charles Rennie Mackintosh", dateCreated: "1904", accessionNumber: "GLAHA/D/0078", location: "Hunterian Museum", hasImage: true, onDisplay: true },
-	{ id: "crm14", collectionType: "Fine Art", objectType: "Oil Painting", title: "The Descent of Night", creator: "Frances Macdonald", dateCreated: "1894", accessionNumber: "GLAHA/F/0445", location: "Hunterian Museum", hasImage: true, onDisplay: false },
-	{ id: "crm15", collectionType: "Architecture", objectType: "Architectural Drawing", title: "Queen's Cross Church — West Elevation", creator: "Charles Rennie Mackintosh", dateCreated: "1897", accessionNumber: "GSAA/DC/007/002", location: "Glasgow School of Art", hasImage: false, onDisplay: false },
-	{ id: "crm16", collectionType: "Archive", objectType: "Letter", title: "Letter from Margaret Macdonald to Jessie Newbery", creator: "Margaret Macdonald Mackintosh", dateCreated: "1900", accessionNumber: "GSAA/AR/1900/012", location: "Glasgow School of Art", hasImage: false, onDisplay: false },
-	{ id: "crm17", collectionType: "Fine Art", objectType: "Watercolour", title: "Walberswick Flowers — White Roses", creator: "Charles Rennie Mackintosh", dateCreated: "1914", accessionNumber: "GLAHA/F/0267", location: "Hunterian Museum", hasImage: true, onDisplay: true },
-	{ id: "crm18", collectionType: "Decorative Art", objectType: "Furniture", title: "Linen Press", creator: "Charles Rennie Mackintosh", dateCreated: "1902", accessionNumber: "HH/F/0019", location: "Hill House", hasImage: true, onDisplay: true },
-	{ id: "crm19", collectionType: "Fine Art", objectType: "Sketch", title: "Studies of Trees, Chiddingstone", creator: "Charles Rennie Mackintosh", dateCreated: "1910", accessionNumber: "GLAHA/F/0198", location: "Hunterian Museum", hasImage: false, onDisplay: false },
-	{ id: "crm20", collectionType: "Archive", objectType: "Photograph", title: "Charles Rennie Mackintosh, portrait", creator: "Unknown", dateCreated: "c.1893", accessionNumber: "GSAA/PH/0001", location: "Glasgow School of Art", hasImage: true, onDisplay: false },
-	{ id: "crm21", collectionType: "Decorative Art", objectType: "Textile", title: "Curtain with Stylised Leaves", creator: "Margaret Macdonald Mackintosh", dateCreated: "1900", accessionNumber: "GLAHA/D/0101", location: "Hunterian Museum", hasImage: true, onDisplay: false },
-	{ id: "crm22", collectionType: "Architecture", objectType: "Architectural Drawing", title: "House for an Art Lover — Music Room Interior", creator: "Charles Rennie Mackintosh", dateCreated: "1901", accessionNumber: "GSAA/DC/018/004", location: "House for an Art Lover", hasImage: true, onDisplay: true },
-	{ id: "crm23", collectionType: "Fine Art", objectType: "Watercolour", title: "Fetges", creator: "Charles Rennie Mackintosh", dateCreated: "1927", accessionNumber: "GLAHA/F/0312", location: "Hunterian Museum", hasImage: true, onDisplay: true },
-	{ id: "crm24", collectionType: "Decorative Art", objectType: "Metalwork", title: "Door Handle Plate, Hill House", creator: "Charles Rennie Mackintosh", dateCreated: "1903", accessionNumber: "HH/M/0007", location: "Hill House", hasImage: true, onDisplay: true },
+	{ id: "crm01", collectionType: "Architecture", objectType: "Architectural Drawing", title: "Glasgow School of Art, North Elevation", creators: ["Charles Rennie Mackintosh"], designers: ["Charles Rennie Mackintosh"], makers: ["Honeyman & Keppie"], dateCreated: "1897", accessionNumber: "GSAA/DC/002/001", location: "Glasgow School of Art", hasImage: true, materials: ["Pencil", "Ink", "Paper"], associatedPeople: ["Francis Newbery"], onDisplay: true },
+	{ id: "crm02", collectionType: "Fine Art", objectType: "Watercolour", title: "Pinks", creators: ["Charles Rennie Mackintosh"], designers: [], makers: [], dateCreated: "1915", accessionNumber: "GLAHA/F/0234", location: "Hunterian Museum", hasImage: true, materials: ["Watercolour", "Paper"], associatedPeople: [], onDisplay: true },
+	{ id: "crm03", collectionType: "Decorative Art", objectType: "Furniture", title: "Ladder-back Chair", creators: ["Charles Rennie Mackintosh"], designers: ["Charles Rennie Mackintosh"], makers: ["Alex Martin"], dateCreated: "1903", accessionNumber: "HH/F/0042", location: "Hill House", hasImage: true, materials: ["Oak", "Stain"], associatedPeople: ["Walter Blackie"], onDisplay: true },
+	{ id: "crm04", collectionType: "Fine Art", objectType: "Watercolour", title: "Anemones", creators: ["Margaret Macdonald Mackintosh"], designers: [], makers: [], dateCreated: "1916", accessionNumber: "GLAHA/F/0301", location: "Hunterian Museum", hasImage: true, materials: ["Watercolour", "Paper"], associatedPeople: ["Charles Rennie Mackintosh"], onDisplay: false },
+	{ id: "crm05", collectionType: "Architecture", objectType: "Architectural Drawing", title: "Hill House, Helensburgh — Ground Floor Plan", creators: ["Charles Rennie Mackintosh"], designers: ["Charles Rennie Mackintosh"], makers: ["Honeyman & Keppie"], dateCreated: "1902", accessionNumber: "GSAA/DC/012/003", location: "Hill House", hasImage: false, materials: ["Pencil", "Ink", "Paper"], associatedPeople: ["Walter Blackie"], onDisplay: false },
+	{ id: "crm06", collectionType: "Decorative Art", objectType: "Textile", title: "Embroidered Panel with Rose Motif", creators: ["Margaret Macdonald Mackintosh"], designers: ["Margaret Macdonald Mackintosh"], makers: ["Margaret Macdonald Mackintosh"], dateCreated: "1902", accessionNumber: "HH/T/0011", location: "Hill House", hasImage: true, materials: ["Linen", "Silk"], associatedPeople: ["Walter Blackie"], onDisplay: true },
+	{ id: "crm07", collectionType: "Archive", objectType: "Letter", title: "Letter from CRM to Hermann Muthesius regarding the Haus eines Kunstfreundes", creators: ["Charles Rennie Mackintosh"], designers: [], makers: [], dateCreated: "1901", accessionNumber: "GSAA/AR/1901/047", location: "Glasgow School of Art", hasImage: false, materials: ["Ink", "Paper"], associatedPeople: ["Hermann Muthesius"], onDisplay: false },
+	{ id: "crm08", collectionType: "Fine Art", objectType: "Watercolour", title: "Holy Island", creators: ["Charles Rennie Mackintosh"], designers: [], makers: [], dateCreated: "1901", accessionNumber: "GLAHA/F/0189", location: "Hunterian Museum", hasImage: true, materials: ["Watercolour", "Pencil", "Paper"], associatedPeople: [], onDisplay: false },
+	{ id: "crm09", collectionType: "Decorative Art", objectType: "Metalwork", title: "Silver Candlestick", creators: ["Charles Rennie Mackintosh"], designers: ["Charles Rennie Mackintosh"], makers: ["Kellock Brown"], dateCreated: "1896", accessionNumber: "GLAHA/D/0055", location: "Hunterian Museum", hasImage: true, materials: ["Silver"], associatedPeople: [], onDisplay: true },
+	{ id: "crm10", collectionType: "Archive", objectType: "Photograph", title: "Interior of the Willow Tea Rooms, Sauchiehall Street", creators: ["Unknown"], designers: [], makers: ["T. & R. Annan & Sons"], dateCreated: "c.1904", accessionNumber: "WTR/PH/0003", location: "Willow Tea Rooms", hasImage: true, materials: ["Silver gelatin print"], associatedPeople: ["Catherine Cranston"], onDisplay: false },
+	{ id: "crm11", collectionType: "Architecture", objectType: "Architectural Drawing", title: "Willow Tea Rooms — Section through the Room de Luxe", creators: ["Charles Rennie Mackintosh"], designers: ["Charles Rennie Mackintosh"], makers: ["Honeyman & Keppie"], dateCreated: "1903", accessionNumber: "GSAA/DC/021/009", location: "Willow Tea Rooms", hasImage: true, materials: ["Pencil", "Watercolour", "Paper"], associatedPeople: ["Catherine Cranston"], onDisplay: false },
+	{ id: "crm12", collectionType: "Fine Art", objectType: "Poster", title: "The Scottish Musical Review", creators: ["Charles Rennie Mackintosh"], designers: ["Charles Rennie Mackintosh"], makers: ["Carter & Pratt"], dateCreated: "1896", accessionNumber: "GLAHA/F/0021", location: "Hunterian Museum", hasImage: true, materials: ["Ink", "Paper"], associatedPeople: [], onDisplay: true },
+	{ id: "crm13", collectionType: "Decorative Art", objectType: "Furniture", title: "Writing Cabinet", creators: ["Charles Rennie Mackintosh", "Margaret Macdonald Mackintosh"], designers: ["Charles Rennie Mackintosh"], makers: ["Francis Smith & Son"], dateCreated: "1904", accessionNumber: "GLAHA/D/0078", location: "Hunterian Museum", hasImage: true, materials: ["Ebonised wood", "Mother of Pearl", "Glass"], associatedPeople: ["Fritz Waerndorfer"], onDisplay: true },
+	{ id: "crm14", collectionType: "Fine Art", objectType: "Oil Painting", title: "The Descent of Night", creators: ["Frances Macdonald"], designers: [], makers: [], dateCreated: "1894", accessionNumber: "GLAHA/F/0445", location: "Hunterian Museum", hasImage: true, materials: ["Oil paint", "Canvas"], associatedPeople: ["Herbert MacNair"], onDisplay: false },
+	{ id: "crm15", collectionType: "Architecture", objectType: "Architectural Drawing", title: "Queen's Cross Church — West Elevation", creators: ["Charles Rennie Mackintosh"], designers: ["Charles Rennie Mackintosh"], makers: ["Honeyman & Keppie"], dateCreated: "1897", accessionNumber: "GSAA/DC/007/002", location: "Glasgow School of Art", hasImage: false, materials: ["Pencil", "Ink", "Paper"], associatedPeople: [], onDisplay: false },
+	{ id: "crm16", collectionType: "Archive", objectType: "Letter", title: "Letter from Margaret Macdonald to Jessie Newbery", creators: ["Margaret Macdonald Mackintosh"], designers: [], makers: [], dateCreated: "1900", accessionNumber: "GSAA/AR/1900/012", location: "Glasgow School of Art", hasImage: false, materials: ["Ink", "Paper"], associatedPeople: ["Jessie Newbery"], onDisplay: false },
+	{ id: "crm17", collectionType: "Fine Art", objectType: "Watercolour", title: "Walberswick Flowers — White Roses", creators: ["Charles Rennie Mackintosh"], designers: [], makers: [], dateCreated: "1914", accessionNumber: "GLAHA/F/0267", location: "Hunterian Museum", hasImage: true, materials: ["Watercolour", "Pencil", "Paper"], associatedPeople: ["Margaret Macdonald Mackintosh"], onDisplay: true },
+	{ id: "crm18", collectionType: "Decorative Art", objectType: "Furniture", title: "Linen Press", creators: ["Charles Rennie Mackintosh"], designers: ["Charles Rennie Mackintosh"], makers: ["Alex Martin"], dateCreated: "1902", accessionNumber: "HH/F/0019", location: "Hill House", hasImage: true, materials: ["Pine", "Paint", "Glass"], associatedPeople: ["Walter Blackie"], onDisplay: true },
+	{ id: "crm19", collectionType: "Fine Art", objectType: "Sketch", title: "Studies of Trees, Chiddingstone", creators: ["Charles Rennie Mackintosh"], designers: [], makers: [], dateCreated: "1910", accessionNumber: "GLAHA/F/0198", location: "Hunterian Museum", hasImage: false, materials: ["Pencil", "Paper"], associatedPeople: [], onDisplay: false },
+	{ id: "crm20", collectionType: "Archive", objectType: "Photograph", title: "Charles Rennie Mackintosh, portrait", creators: ["Unknown"], designers: [], makers: ["T. & R. Annan & Sons"], dateCreated: "c.1893", accessionNumber: "GSAA/PH/0001", location: "Glasgow School of Art", hasImage: true, materials: ["Albumen print"], associatedPeople: ["Charles Rennie Mackintosh"], onDisplay: false },
+	{ id: "crm21", collectionType: "Decorative Art", objectType: "Textile", title: "Curtain with Stylised Leaves", creators: ["Margaret Macdonald Mackintosh", "Frances Macdonald"], designers: ["Margaret Macdonald Mackintosh"], makers: ["Frances Macdonald"], dateCreated: "1900", accessionNumber: "GLAHA/D/0101", location: "Hunterian Museum", hasImage: true, materials: ["Linen", "Silk"], associatedPeople: [], onDisplay: false },
+	{ id: "crm22", collectionType: "Architecture", objectType: "Architectural Drawing", title: "House for an Art Lover — Music Room Interior", creators: ["Charles Rennie Mackintosh", "Margaret Macdonald Mackintosh"], designers: ["Charles Rennie Mackintosh"], makers: [], dateCreated: "1901", accessionNumber: "GSAA/DC/018/004", location: "House for an Art Lover", hasImage: true, materials: ["Pencil", "Watercolour", "Paper"], associatedPeople: ["Alexander Koch"], onDisplay: true },
+	{ id: "crm23", collectionType: "Fine Art", objectType: "Watercolour", title: "Fetges", creators: ["Charles Rennie Mackintosh"], designers: [], makers: [], dateCreated: "1927", accessionNumber: "GLAHA/F/0312", location: "Hunterian Museum", hasImage: true, materials: ["Watercolour", "Paper"], associatedPeople: ["Margaret Macdonald Mackintosh"], onDisplay: true },
+	{ id: "crm24", collectionType: "Decorative Art", objectType: "Metalwork", title: "Door Handle Plate, Hill House", creators: ["Charles Rennie Mackintosh"], designers: ["Charles Rennie Mackintosh"], makers: ["Kellock Brown"], dateCreated: "1903", accessionNumber: "HH/M/0007", location: "Hill House", hasImage: true, materials: ["Brass"], associatedPeople: ["Walter Blackie"], onDisplay: true },
 ];
 
 const COLLECTION_TYPES: CollectionType[] = ["Architecture", "Fine Art", "Decorative Art", "Archive"];
-const OBJECT_TYPES: ObjectType[] = ["Architectural Drawing", "Watercolour", "Oil Painting", "Furniture", "Textile", "Photograph", "Letter", "Print", "Poster", "Metalwork", "Sketch"];
 const LOCATIONS: Location[] = ["Hill House", "Willow Tea Rooms", "Glasgow School of Art", "House for an Art Lover", "Queen's Cross Church", "Hunterian Museum"];
 const CREATORS: Creator[] = ["Charles Rennie Mackintosh", "Margaret Macdonald Mackintosh", "Frances Macdonald", "Herbert MacNair", "Unknown"];
+const DESIGNERS: string[] = [...new Set(ALL_ITEMS.flatMap((i) => i.designers))].sort();
+const MAKERS: string[] = [...new Set(ALL_ITEMS.flatMap((i) => i.makers))].sort();
+const MATERIALS: string[] = [...new Set(ALL_ITEMS.flatMap((i) => i.materials))].sort();
+const ASSOCIATED_PEOPLE: string[] = [...new Set(ALL_ITEMS.flatMap((i) => i.associatedPeople))].sort();
+
+// Date filter buckets by decade, e.g. "1890s"
+function decadeOf(item: CRMItem): string {
+	const year = Number.parseInt(item.dateCreated.replace(/\D/g, ""), 10);
+	return `${Math.floor(year / 10) * 10}s`;
+}
+const DECADES: string[] = [...new Set(ALL_ITEMS.map(decadeOf))].sort();
 
 const PAGE_SIZE = 12;
 
@@ -94,29 +108,33 @@ const PAGE_SIZE = 12;
 
 interface Filters {
 	query: string;
-	hasImage: boolean;
-	onDisplay: boolean;
-	collectionType: CollectionType[];
-	objectType: ObjectType[];
-	location: Location[];
+	date: string[];
 	creator: Creator[];
+	designer: string[];
+	maker: string[];
+	location: Location[];
+	material: string[];
+	category: CollectionType[];
+	associatedPerson: string[];
 }
 
 function emptyFilters(): Filters {
-	return { query: "", hasImage: false, onDisplay: false, collectionType: [], objectType: [], location: [], creator: [] };
+	return { query: "", date: [], creator: [], designer: [], maker: [], location: [], material: [], category: [], associatedPerson: [] };
 }
 
 function applyFilters(items: CRMItem[], f: Filters): CRMItem[] {
 	return items.filter((item) => {
-		if (f.hasImage && !item.hasImage) return false;
-		if (f.onDisplay && !item.onDisplay) return false;
-		if (f.collectionType.length > 0 && !f.collectionType.includes(item.collectionType)) return false;
-		if (f.objectType.length > 0 && !f.objectType.includes(item.objectType)) return false;
+		if (f.date.length > 0 && !f.date.includes(decadeOf(item))) return false;
+		if (f.creator.length > 0 && !item.creators.some((c) => f.creator.includes(c))) return false;
+		if (f.designer.length > 0 && !item.designers.some((d) => f.designer.includes(d))) return false;
+		if (f.maker.length > 0 && !item.makers.some((m) => f.maker.includes(m))) return false;
 		if (f.location.length > 0 && !f.location.includes(item.location)) return false;
-		if (f.creator.length > 0 && !f.creator.includes(item.creator)) return false;
+		if (f.material.length > 0 && !item.materials.some((m) => f.material.includes(m))) return false;
+		if (f.category.length > 0 && !f.category.includes(item.collectionType)) return false;
+		if (f.associatedPerson.length > 0 && !item.associatedPeople.some((p) => f.associatedPerson.includes(p))) return false;
 		if (f.query) {
 			const q = f.query.toLowerCase();
-			if (!item.title.toLowerCase().includes(q) && !item.creator.toLowerCase().includes(q) && !item.accessionNumber.toLowerCase().includes(q)) return false;
+			if (!item.title.toLowerCase().includes(q) && !item.creators.some((c) => c.toLowerCase().includes(q)) && !item.accessionNumber.toLowerCase().includes(q)) return false;
 		}
 		return true;
 	});
@@ -162,18 +180,12 @@ function ResultCard({ item }: { item: CRMItem }) {
 	return (
 		<article className="flex flex-col border border-gray-200 bg-white hover:border-gray-400">
 			<ImagePlaceholder className="aspect-square w-full" />
-			<div className="flex flex-1 flex-col gap-1.5 p-3">
+			<div className="flex flex-1 flex-col gap-1.5 border-2 border-red-500 p-3">
 				<span className="inline-block self-start border border-gray-400 bg-gray-100 px-1.5 py-0.5 font-mono text-label uppercase tracking-[0.08em] text-gray-600">
 					{item.objectType}
 				</span>
 				<h3 className="font-mono text-meta font-medium leading-snug text-gray-900">{item.title}</h3>
-				<p className="font-mono text-label text-gray-500">Date created: {item.dateCreated}</p>
-				<div className="mt-auto border-t border-gray-100 pt-2">
-					<p className="font-mono text-label uppercase tracking-[0.08em] text-gray-500">
-						{item.collectionType === "Archive" ? "Archive number" : "Object number"}:{" "}
-						<span className="tabular-nums">{item.accessionNumber}</span>
-					</p>
-				</div>
+				<p className="font-mono text-label text-gray-500">Creator: {item.creators.join(", ")}</p>
 			</div>
 		</article>
 	);
@@ -181,7 +193,21 @@ function ResultCard({ item }: { item: CRMItem }) {
 
 // ── Page ────────────────────────────────────────────────────────────────
 
-type OpenAccordion = "collectionType" | "objectType" | "location" | "creator" | "date" | null;
+type FilterKey = Exclude<keyof Filters, "query">;
+
+// Labels for the active-filter chips, in sidebar order
+const FILTER_LABELS: Record<FilterKey, string> = {
+	date: "Date",
+	creator: "Creator",
+	designer: "Designer",
+	maker: "Maker",
+	location: "Location",
+	material: "Material",
+	category: "Category",
+	associatedPerson: "Associated person",
+};
+
+type OpenAccordion = "date" | "creator" | "designer" | "maker" | "location" | "material" | "category" | "associatedPerson" | null;
 type SortOrder = "relevance" | "dateAsc" | "dateDesc" | "titleAz";
 
 function CRMSearchContent() {
@@ -201,7 +227,7 @@ function CRMSearchContent() {
 
 	const totalPages = Math.ceil(sorted.length / PAGE_SIZE);
 	const pageItems = sorted.slice((page - 1) * PAGE_SIZE, page * PAGE_SIZE);
-	const activeCount = (filters.hasImage ? 1 : 0) + (filters.onDisplay ? 1 : 0) + filters.collectionType.length + filters.objectType.length + filters.location.length + filters.creator.length;
+	const activeCount = filters.date.length + filters.creator.length + filters.designer.length + filters.maker.length + filters.location.length + filters.material.length + filters.category.length + filters.associatedPerson.length;
 
 	useEffect(() => { setPage(1); }, [filters, query, sort]);
 
@@ -212,6 +238,14 @@ function CRMSearchContent() {
 
 	function setF<K extends keyof Filters>(key: K, value: Filters[K]) {
 		setFilters((prev) => ({ ...prev, [key]: value }));
+	}
+
+	const activeChips = (Object.keys(FILTER_LABELS) as FilterKey[]).flatMap((key) =>
+		(filters[key] as string[]).map((value) => ({ key, value })),
+	);
+
+	function removeChip(key: FilterKey, value: string) {
+		setFilters((prev) => ({ ...prev, [key]: (prev[key] as string[]).filter((v) => v !== value) }));
 	}
 
 	return (
@@ -234,7 +268,7 @@ function CRMSearchContent() {
 					<p className="mb-4 font-mono text-body font-medium">What are you looking for?</p>
 					<form
 						onSubmit={(e) => e.preventDefault()}
-						className="mx-auto flex max-w-xl border border-gray-400 focus-within:border-gray-800 hover:border-gray-600"
+						className="mx-auto flex max-w-sm border border-gray-400 focus-within:border-gray-800 hover:border-gray-600"
 					>
 						<input
 							type="text"
@@ -249,50 +283,8 @@ function CRMSearchContent() {
 					</form>
 				</WireframeSection>
 
-				{/* Results count bar */}
-				<div ref={resultsRef} className="border-t border-gray-300 px-6 py-8 text-center">
-					<div className="mx-auto max-w-md border border-gray-300 bg-white px-6 py-4">
-						<p className="font-mono text-meta text-gray-600">
-							{results.length < ALL_ITEMS.length
-								? `Showing ${results.length} of ${ALL_ITEMS.length} results.`
-								: `Showing ${ALL_ITEMS.length} results.`}
-							{activeCount > 0 && (
-								<button
-									type="button"
-									onClick={() => setFilters(emptyFilters())}
-									className="ml-3 font-mono text-label text-gray-500 underline hover:text-black"
-								>
-									Clear {activeCount} filter{activeCount !== 1 ? "s" : ""}
-								</button>
-							)}
-						</p>
-					</div>
-				</div>
-
-				{/* Sort */}
-				<div className="px-6 pb-8">
-					<div className="flex justify-end">
-						<div className="flex flex-col items-end gap-1">
-							<label htmlFor="crm-sort" className="font-mono text-label uppercase tracking-[0.08em] text-gray-500">
-								Sort results by
-							</label>
-							<select
-								id="crm-sort"
-								value={sort}
-								onChange={(e) => setSort(e.target.value as SortOrder)}
-								className="border border-gray-300 font-mono text-meta outline-none hover:border-gray-500"
-							>
-								<option value="relevance">Relevance</option>
-								<option value="dateAsc">Date (oldest first)</option>
-								<option value="dateDesc">Date (newest first)</option>
-								<option value="titleAz">Title A-Z</option>
-							</select>
-						</div>
-					</div>
-				</div>
-
 				{/* Layout */}
-				<div className="flex flex-col px-6 lg:flex-row">
+				<div ref={resultsRef} className="flex flex-col border-t border-gray-300 px-6 pt-8 lg:flex-row">
 					{/* Sidebar */}
 					<WireframeSection label="Filters" className="w-full border-2 border-red-500 lg:w-56 lg:shrink-0 lg:self-start lg:sticky lg:top-0">
 						<button
@@ -309,36 +301,44 @@ function CRMSearchContent() {
 							<span className="font-mono text-meta text-white lg:hidden" aria-hidden="true">{filtersOpen ? "▴" : "▾"}</span>
 						</button>
 						<div className={`${filtersOpen ? "block" : "hidden"} lg:block`}>
-						<div className="space-y-2 border-b border-gray-300 px-3 py-3">
-							<CheckOption
-								label={`Has image (${ALL_ITEMS.filter((i) => i.hasImage).length})`}
-								checked={filters.hasImage}
-								onChange={() => setF("hasImage", !filters.hasImage)}
-							/>
-							<CheckOption
-								label={`On display (${ALL_ITEMS.filter((i) => i.onDisplay).length})`}
-								checked={filters.onDisplay}
-								onChange={() => setF("onDisplay", !filters.onDisplay)}
-							/>
-						</div>
-						<AccordionSection label="Collection type" open={open === "collectionType"} onToggle={() => setOpen(open === "collectionType" ? null : "collectionType")}>
-							{COLLECTION_TYPES.map((ct) => (
-								<CheckOption key={ct} label={ct} checked={filters.collectionType.includes(ct)} onChange={() => setF("collectionType", toggle(filters.collectionType, ct))} count={ALL_ITEMS.filter((i) => i.collectionType === ct).length} />
-							))}
-						</AccordionSection>
-						<AccordionSection label="Object type" open={open === "objectType"} onToggle={() => setOpen(open === "objectType" ? null : "objectType")}>
-							{OBJECT_TYPES.filter((ot) => ALL_ITEMS.some((i) => i.objectType === ot)).map((ot) => (
-								<CheckOption key={ot} label={ot} checked={filters.objectType.includes(ot)} onChange={() => setF("objectType", toggle(filters.objectType, ot))} count={ALL_ITEMS.filter((i) => i.objectType === ot).length} />
-							))}
-						</AccordionSection>
-						<AccordionSection label="Location / building" open={open === "location"} onToggle={() => setOpen(open === "location" ? null : "location")}>
-							{LOCATIONS.map((loc) => (
-								<CheckOption key={loc} label={loc} checked={filters.location.includes(loc)} onChange={() => setF("location", toggle(filters.location, loc))} count={ALL_ITEMS.filter((i) => i.location === loc).length} />
+						<AccordionSection label="Date" open={open === "date"} onToggle={() => setOpen(open === "date" ? null : "date")}>
+							{DECADES.map((d) => (
+								<CheckOption key={d} label={d} checked={filters.date.includes(d)} onChange={() => setF("date", toggle(filters.date, d))} count={ALL_ITEMS.filter((i) => decadeOf(i) === d).length} />
 							))}
 						</AccordionSection>
 						<AccordionSection label="Creator" open={open === "creator"} onToggle={() => setOpen(open === "creator" ? null : "creator")}>
-							{CREATORS.filter((cr) => ALL_ITEMS.some((i) => i.creator === cr)).map((cr) => (
-								<CheckOption key={cr} label={cr} checked={filters.creator.includes(cr)} onChange={() => setF("creator", toggle(filters.creator, cr))} count={ALL_ITEMS.filter((i) => i.creator === cr).length} />
+							{CREATORS.filter((cr) => ALL_ITEMS.some((i) => i.creators.includes(cr))).map((cr) => (
+								<CheckOption key={cr} label={cr} checked={filters.creator.includes(cr)} onChange={() => setF("creator", toggle(filters.creator, cr))} count={ALL_ITEMS.filter((i) => i.creators.includes(cr)).length} />
+							))}
+						</AccordionSection>
+						<AccordionSection label="Designer" open={open === "designer"} onToggle={() => setOpen(open === "designer" ? null : "designer")}>
+							{DESIGNERS.map((d) => (
+								<CheckOption key={d} label={d} checked={filters.designer.includes(d)} onChange={() => setF("designer", toggle(filters.designer, d))} count={ALL_ITEMS.filter((i) => i.designers.includes(d)).length} />
+							))}
+						</AccordionSection>
+						<AccordionSection label="Maker" open={open === "maker"} onToggle={() => setOpen(open === "maker" ? null : "maker")}>
+							{MAKERS.map((m) => (
+								<CheckOption key={m} label={m} checked={filters.maker.includes(m)} onChange={() => setF("maker", toggle(filters.maker, m))} count={ALL_ITEMS.filter((i) => i.makers.includes(m)).length} />
+							))}
+						</AccordionSection>
+						<AccordionSection label="Location" open={open === "location"} onToggle={() => setOpen(open === "location" ? null : "location")}>
+							{LOCATIONS.filter((loc) => ALL_ITEMS.some((i) => i.location === loc)).map((loc) => (
+								<CheckOption key={loc} label={loc} checked={filters.location.includes(loc)} onChange={() => setF("location", toggle(filters.location, loc))} count={ALL_ITEMS.filter((i) => i.location === loc).length} />
+							))}
+						</AccordionSection>
+						<AccordionSection label="Materials" open={open === "material"} onToggle={() => setOpen(open === "material" ? null : "material")}>
+							{MATERIALS.map((m) => (
+								<CheckOption key={m} label={m} checked={filters.material.includes(m)} onChange={() => setF("material", toggle(filters.material, m))} count={ALL_ITEMS.filter((i) => i.materials.includes(m)).length} />
+							))}
+						</AccordionSection>
+						<AccordionSection label="Category" open={open === "category"} onToggle={() => setOpen(open === "category" ? null : "category")}>
+							{COLLECTION_TYPES.map((ct) => (
+								<CheckOption key={ct} label={ct} checked={filters.category.includes(ct)} onChange={() => setF("category", toggle(filters.category, ct))} count={ALL_ITEMS.filter((i) => i.collectionType === ct).length} />
+							))}
+						</AccordionSection>
+						<AccordionSection label="Associated person" open={open === "associatedPerson"} onToggle={() => setOpen(open === "associatedPerson" ? null : "associatedPerson")}>
+							{ASSOCIATED_PEOPLE.map((ap) => (
+								<CheckOption key={ap} label={ap} checked={filters.associatedPerson.includes(ap)} onChange={() => setF("associatedPerson", toggle(filters.associatedPerson, ap))} count={ALL_ITEMS.filter((i) => i.associatedPeople.includes(ap)).length} />
 							))}
 						</AccordionSection>
 						<div className="hidden p-3 lg:block">
@@ -350,7 +350,57 @@ function CRMSearchContent() {
 					</WireframeSection>
 
 					{/* Results */}
-					<WireframeSection label="Results grid" className="flex-1 p-6">
+					<WireframeSection label="Results grid" className="flex-1 px-6 pt-6 pb-6 lg:pt-0">
+						{/* Count and sort sit level with the sidebar's "Filter by" bar (border-2 transparent + py-2.5 matches its height) */}
+						<div className="mb-2 flex flex-col gap-4 border-2 border-transparent lg:flex-row lg:items-center lg:justify-between lg:py-2.5">
+							<p className="font-mono text-meta text-gray-600">
+								{results.length < ALL_ITEMS.length
+									? `Showing ${results.length} of ${ALL_ITEMS.length} results`
+									: `Showing ${ALL_ITEMS.length} results`}
+								{activeCount > 0 && (
+									<button
+										type="button"
+										onClick={() => setFilters(emptyFilters())}
+										className="ml-3 font-mono text-label text-gray-500 underline hover:text-black"
+									>
+										Clear {activeCount} filter{activeCount !== 1 ? "s" : ""}
+									</button>
+								)}
+							</p>
+							<div className="flex items-center gap-2 self-end lg:self-auto">
+								<label htmlFor="crm-sort" className="font-mono text-label uppercase tracking-[0.08em] text-gray-500">
+									Sort results by
+								</label>
+								<select
+									id="crm-sort"
+									value={sort}
+									onChange={(e) => setSort(e.target.value as SortOrder)}
+									className="border border-gray-300 font-mono text-meta outline-none hover:border-gray-500"
+								>
+									<option value="relevance">Relevance</option>
+									<option value="dateAsc">Date (oldest first)</option>
+									<option value="dateDesc">Date (newest first)</option>
+									<option value="titleAz">Title A-Z</option>
+								</select>
+							</div>
+						</div>
+						{activeChips.length > 0 && (
+							<ul className="mb-4 flex flex-wrap gap-2">
+								{activeChips.map(({ key, value }) => (
+									<li key={`${key}-${value}`} className="flex items-center gap-2 border border-gray-400 bg-gray-100 py-1 pr-1.5 pl-2.5 font-mono text-label text-gray-700">
+										<span>{FILTER_LABELS[key]}: {value}</span>
+										<button
+											type="button"
+											onClick={() => removeChip(key, value)}
+											aria-label={`Remove ${FILTER_LABELS[key]}: ${value} filter`}
+											className="px-1 text-gray-500 hover:text-black"
+										>
+											×
+										</button>
+									</li>
+								))}
+							</ul>
+						)}
 						{pageItems.length === 0 ? (
 							<div className="border border-dashed border-gray-300 py-20 text-center font-mono text-meta text-gray-400">
 								No items match your filters.
