@@ -35,10 +35,10 @@ const ITEM = {
 	date: "1905",
 	onDisplay: false,
 	acquisition: "",
-	category: "",
+	category: "Furniture",
 	materials: ["Sycamore", "Mother of Pearl"],
 	dimensions: { height: "140 cm", width: null, depth: null },
-	themes: [],
+	themes: ["Lighting", "Interiors"],
 	associatedPeople: ["Walter Blackie"],
 	provenance: "Commissioned by Walter Blackie for The Hill House, Helensburgh; remained in the house until it passed to the National Trust for Scotland.",
 	acquisitionDate: "1982",
@@ -407,22 +407,24 @@ function CRMItemCurrent({ variation }: { variation: string }) {
 					</Container>
 				</WireframeSection>
 
-				{/* Related content */}
-				<WireframeSection label="Related content" className="border-t border-b border-gray-200 px-6 py-10">
-					<Container size="lg">
-						<h2 className="font-mono text-section font-medium tracking-tight text-gray-900 mb-6">Related content</h2>
-						<div className="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-4">
-							{relatedObjects.map((obj, i) => (
-								<a key={i} href="#" className="group flex flex-col gap-2 hover:opacity-80">
-									<ImagePlaceholder className="w-full aspect-square" />
-									<span className="font-mono text-label uppercase tracking-[0.08em] text-gray-500">{obj.objectType}</span>
-									<span className="font-mono text-meta font-medium text-gray-900 leading-snug group-hover:underline">{obj.title}</span>
-									<span className="font-mono text-label text-gray-400">{obj.date}</span>
-								</a>
-							))}
-						</div>
-					</Container>
-				</WireframeSection>
+				{/* Related content — removed from MVP, kept on Tombstone */}
+				{variation === "tombstone" && (
+					<WireframeSection label="Related content" className="border-t border-b border-gray-200 px-6 py-10">
+						<Container size="lg">
+							<h2 className="font-mono text-section font-medium tracking-tight text-gray-900 mb-6">Related content</h2>
+							<div className="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-4">
+								{relatedObjects.map((obj, i) => (
+									<a key={i} href="#" className="group flex flex-col gap-2 hover:opacity-80">
+										<ImagePlaceholder className="w-full aspect-square" />
+										<span className="font-mono text-label uppercase tracking-[0.08em] text-gray-500">{obj.objectType}</span>
+										<span className="font-mono text-meta font-medium text-gray-900 leading-snug group-hover:underline">{obj.title}</span>
+										<span className="font-mono text-label text-gray-400">{obj.date}</span>
+									</a>
+								))}
+							</div>
+						</Container>
+					</WireframeSection>
+				)}
 
 				{/* Caring for Collections CTA */}
 				<WireframeSection label="Caring for collections CTA" className="bg-gray-700 px-6 py-32 text-center text-white">
