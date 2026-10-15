@@ -356,7 +356,10 @@ function CRMItemCurrent({ variation }: { variation: string }) {
 								<div className="flex flex-col gap-10 lg:flex-row lg:gap-12">
 									<WireframeSection label="Key details" className="order-first w-full border-2 border-red-500 p-4 lg:order-last lg:w-56 lg:shrink-0">
 										<h2 className="font-mono text-section font-medium tracking-tight text-gray-900 mb-4">Key details</h2>
-										<KeyDetailsTombstone />
+										{/* Fields to be decided */}
+										<div className="flex items-center justify-center border-2 border-gray-300 py-16">
+											<p className="font-mono text-page font-semibold tracking-tight text-gray-400">TBD</p>
+										</div>
 									</WireframeSection>
 									<div className="min-w-0 flex-1">
 										<WireframeSection label="Description">
