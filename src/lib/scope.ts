@@ -34,7 +34,7 @@ export const scope: Record<string, ScopeEntry> = {
 	// "UI Tweaks" tab on /crm-search — proposed changes, not in MVP scope
 	"crm-search-ui-tweaks/Hero": { mvp: true, issueUrl: issue("CRM-1") },
 	"crm-search-ui-tweaks/Search bar": { mvp: false, note: "Proposed UI tweak: narrower search bar", issueUrl: issue("CRM-2") },
-	"crm-search-ui-tweaks/Filters": { mvp: false, note: "Proposed UI tweak: new filter set, nested locations", issueUrl: issue("CRM-3") },
+	"crm-search-ui-tweaks/Filters": { mvp: false, note: "Proposed UI tweak: sidebar raised level with the count/sort row", issueUrl: issue("CRM-3") },
 	"crm-search-ui-tweaks/Results grid": { mvp: false, note: "Proposed UI tweak: count/sort row, filter chips, card fields", issueUrl: issue("CRM-4") },
 };
 
