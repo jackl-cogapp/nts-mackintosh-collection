@@ -27,6 +27,11 @@ export const scope: Record<string, ScopeEntry> = {
 	"crm-item/Key details": { mvp: true, issueUrl: issue("CRM-6") },
 	"crm-item/Description": { mvp: true, issueUrl: issue("CRM-7") },
 	"crm-item/Object information": { mvp: true, issueUrl: issue("CRM-8") },
+	// "Post-MVP" tab on /crm-item
+	"crm-item-post-mvp/Image viewer": { mvp: false, issueUrl: issue("CRM-5") },
+	"crm-item-post-mvp/Key details": { mvp: false, issueUrl: issue("CRM-6") },
+	"crm-item-post-mvp/Description": { mvp: false, issueUrl: issue("CRM-7") },
+	"crm-item-post-mvp/Object information": { mvp: false, issueUrl: issue("CRM-8") },
 	"crm-search/Hero": { mvp: true, issueUrl: issue("CRM-1") },
 	"crm-search/Search bar": { mvp: true, issueUrl: issue("CRM-2") },
 	"crm-search/Filters": { mvp: true, issueUrl: issue("CRM-3") },

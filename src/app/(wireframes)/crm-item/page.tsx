@@ -10,10 +10,12 @@ import {
 import NtsFooter from "@/components/wireframe/NtsFooter";
 import NtsHeader from "@/components/wireframe/NtsHeader";
 import { ScopePage } from "@/providers/ScopeProvider";
+import CrmItemPostMvp from "./CrmItemPostMvp";
 
 const VARIATIONS = [
 	{ key: "burns-style", label: "MVP" },
 	{ key: "tombstone", label: "Tombstone" },
+	{ key: "post-mvp", label: "Post-MVP" },
 ] as const;
 
 // ── Mock item ───────────────────────────────────────────────────────────
@@ -190,8 +192,7 @@ function ImageWithControls({ label }: { label: string }) {
 
 // ── Page ────────────────────────────────────────────────────────────────
 
-function CRMItemContent() {
-	const variation = usePageVariations(VARIATIONS);
+function CRMItemCurrent({ variation }: { variation: string }) {
 	const [showMore, setShowMore] = useState(false);
 	const [activeThumb, setActiveThumb] = useState(0);
 
@@ -394,6 +395,12 @@ function CRMItemContent() {
 			</div>
 		</ScopePage>
 	);
+}
+
+// Post-MVP is a separate copy so it can diverge without touching MVP / Tombstone
+function CRMItemContent() {
+	const variation = usePageVariations(VARIATIONS);
+	return variation === "post-mvp" ? <CrmItemPostMvp /> : <CRMItemCurrent variation={variation} />;
 }
 
 export default function CRMItemPage() {

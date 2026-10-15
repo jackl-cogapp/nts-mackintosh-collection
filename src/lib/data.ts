@@ -44,7 +44,7 @@ export const pages: WireframePage[] = [
 	},
 	{
 		id: "crm-item",
-		title: "Mackintosh Collection Item",
+		title: "Mackintosh Object Page",
 		description:
 			"Collection object detail page — image viewer, key details sidebar, description, and object information",
 		status: "wip",
@@ -115,7 +115,7 @@ export const navigation: NavNode[] = [
 			{ label: "Collection Home — MVP", href: "/collection-home-mvp" },
 			{ label: "Timeline", href: "/timeline" },
 			{ label: "Map Explorer", href: "/map" },
-			{ label: "Collection Item", href: "/crm-item" },
+			{ label: "Object Page", href: "/crm-item" },
 			{ label: "Collection Search", href: "/crm-search" },
 		],
 	},
