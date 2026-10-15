@@ -320,7 +320,7 @@ export default function CrmSearchMvp() {
 				{/* Layout */}
 				<div className="flex flex-col px-6 lg:flex-row">
 					{/* Sidebar */}
-					<WireframeSection label="Filters" className="w-full border-2 border-red-500 lg:w-56 lg:shrink-0 lg:self-start lg:sticky lg:top-0">
+					<WireframeSection label="Filters" className="w-full border-2 border-red-500 lg:mt-16 lg:w-56 lg:shrink-0 lg:self-start lg:sticky lg:top-0">
 						<button
 							type="button"
 							onClick={() => setFiltersOpen((o) => !o)}
