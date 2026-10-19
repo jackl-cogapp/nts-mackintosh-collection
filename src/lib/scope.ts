@@ -41,6 +41,11 @@ export const scope: Record<string, ScopeEntry> = {
 	"crm-search-ui-tweaks/Search bar": { mvp: false, note: "Proposed UI tweak: narrower search bar", issueUrl: issue("CRM-2") },
 	"crm-search-ui-tweaks/Filters": { mvp: false, note: "Proposed UI tweak: sidebar raised level with the count/sort row", issueUrl: issue("CRM-3") },
 	"crm-search-ui-tweaks/Results grid": { mvp: false, note: "Proposed UI tweak: count/sort row, filter chips, card fields", issueUrl: issue("CRM-4") },
+	// "Masonry" tab on /crm-search — copy of UI Tweaks
+	"crm-search-masonry/Hero": { mvp: true, issueUrl: issue("CRM-1") },
+	"crm-search-masonry/Search bar": { mvp: false, note: "Proposed UI tweak: narrower search bar", issueUrl: issue("CRM-2") },
+	"crm-search-masonry/Filters": { mvp: false, note: "Proposed UI tweak: sidebar raised level with the count/sort row", issueUrl: issue("CRM-3") },
+	"crm-search-masonry/Results grid": { mvp: false, note: "Proposed UI tweak: count/sort row, filter chips, card fields", issueUrl: issue("CRM-4") },
 };
 
 export function getAnnotation(pageId: string | undefined, label: string): ScopeEntry | undefined {
