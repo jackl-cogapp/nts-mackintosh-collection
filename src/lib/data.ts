@@ -111,6 +111,14 @@ export const pages: WireframePage[] = [
 		status: "wip",
 		group: "Ideas",
 	},
+	{
+		id: "object-page-tombstone",
+		title: "Object Page — Tombstone",
+		description:
+			"Object page with image viewer and description beside stacked key details and object information tombstones",
+		status: "wip",
+		group: "Ideas",
+	},
 ];
 
 export const PAGE_GROUPS = ["MVP", "Post-MVP", "Ideas"] as const;
@@ -138,6 +146,7 @@ export const navigation: NavNode[] = [
 			{ label: "Browse By", href: "/browse-by" },
 			{ label: "Embeddable Object Components", href: "/object-embeds" },
 			{ label: "Interior Photos", href: "/interior-photos" },
+			{ label: "Object Page — Tombstone", href: "/object-page-tombstone" },
 		],
 	},
 ];

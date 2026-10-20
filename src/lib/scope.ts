@@ -33,6 +33,11 @@ export const scope: Record<string, ScopeEntry> = {
 	"crm-item-post-mvp/Key details": { mvp: false, issueUrl: issue("CRM-6") },
 	"crm-item-post-mvp/Description": { mvp: false, issueUrl: issue("CRM-7") },
 	"crm-item-post-mvp/Object information": { mvp: false, issueUrl: issue("CRM-8") },
+	// Object Page tombstone layout, split out of the Object Page tabs
+	"object-page-tombstone/Image viewer": { mvp: false, issueUrl: issue("CRM-5") },
+	"object-page-tombstone/Key details": { mvp: false, issueUrl: issue("CRM-6") },
+	"object-page-tombstone/Description": { mvp: false, issueUrl: issue("CRM-7") },
+	"object-page-tombstone/Object information": { mvp: false, issueUrl: issue("CRM-8") },
 	"crm-search/Hero": { mvp: true, issueUrl: issue("CRM-1") },
 	"crm-search/Search bar": { mvp: true, issueUrl: issue("CRM-2") },
 	"crm-search/Filters": { mvp: true, issueUrl: issue("CRM-3") },
