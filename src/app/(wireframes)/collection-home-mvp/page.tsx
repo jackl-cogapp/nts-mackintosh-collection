@@ -5,19 +5,12 @@ import {
 	Container,
 	ImagePlaceholder,
 	WireframeSection,
-	usePageVariations,
 } from "@/components/wireframe";
 import NtsFooter from "@/components/wireframe/NtsFooter";
 import NtsHeader from "@/components/wireframe/NtsHeader";
 import { ScopePage } from "@/providers/ScopeProvider";
-import CollectionHomeBrowseBy from "./CollectionHomeBrowseBy";
 
-const VARIATIONS = [
-	{ key: "mvp", label: "MVP" },
-	{ key: "browse-by", label: "Browse by" },
-] as const;
-
-function CollectionHomeMvpCurrent() {
+function CollectionHomeMvpContent() {
 	return (
 		<ScopePage id="collection-home-mvp">
 			<div className="min-h-screen bg-white">
@@ -117,16 +110,6 @@ function CollectionHomeMvpCurrent() {
 				<NtsFooter />
 			</div>
 		</ScopePage>
-	);
-}
-
-// "Browse by" is a separate copy so it can diverge without touching MVP
-function CollectionHomeMvpContent() {
-	const variation = usePageVariations(VARIATIONS);
-	return variation === "browse-by" ? (
-		<CollectionHomeBrowseBy />
-	) : (
-		<CollectionHomeMvpCurrent />
 	);
 }
 

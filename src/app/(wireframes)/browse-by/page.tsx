@@ -16,10 +16,10 @@ const BROWSE_BY = [
 	{ group: "People", value: "Margaret Macdonald", href: "/crm-search" },
 ];
 
-// "Browse by" tab: started as an exact copy of the MVP landing page
-export default function CollectionHomeBrowseBy() {
+// Landing page with "Browse by" CTA blocks (NTS11-46), started as a copy of the MVP landing page
+export default function BrowseByPage() {
 	return (
-		<ScopePage id="collection-home-mvp-browse-by">
+		<ScopePage id="browse-by">
 			<div className="min-h-screen bg-white">
 				{/* Hero */}
 				<WireframeSection label="Hero" className="relative">

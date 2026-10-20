@@ -69,6 +69,15 @@ export const pages: WireframePage[] = [
 		group: "Post-MVP",
 	},
 
+	{
+		id: "browse-by",
+		title: "Browse By",
+		description:
+			"Landing page with a row of Browse by image cards under the search box, each linking to a canned search",
+		status: "wip",
+		group: "Post-MVP",
+	},
+
 	// ── Ideas ──────────────────────────────────────────────────────────
 	{
 		id: "collection-home",
@@ -126,6 +135,7 @@ export const navigation: NavNode[] = [
 			{ label: "Map Explorer", href: "/map" },
 			{ label: "Object Page", href: "/crm-item" },
 			{ label: "Collection Search", href: "/crm-search" },
+			{ label: "Browse By", href: "/browse-by" },
 			{ label: "Embeddable Object Components", href: "/object-embeds" },
 			{ label: "Interior Photos", href: "/interior-photos" },
 		],
