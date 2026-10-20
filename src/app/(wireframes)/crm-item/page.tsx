@@ -1,21 +1,14 @@
 "use client";
 
-import { type ReactNode, Suspense, useState } from "react";
+import { type ReactNode, useState } from "react";
 import {
 	Container,
 	ImagePlaceholder,
 	WireframeSection,
-	usePageVariations,
 } from "@/components/wireframe";
 import NtsFooter from "@/components/wireframe/NtsFooter";
 import NtsHeader from "@/components/wireframe/NtsHeader";
 import { ScopePage } from "@/providers/ScopeProvider";
-import CrmItemPostMvp from "./CrmItemPostMvp";
-
-const VARIATIONS = [
-	{ key: "burns-style", label: "MVP" },
-	{ key: "post-mvp", label: "Post-MVP" },
-] as const;
 
 // ── Mock item ───────────────────────────────────────────────────────────
 
@@ -141,7 +134,7 @@ function ObjectInfoFields() {
 
 // ── Page ────────────────────────────────────────────────────────────────
 
-function CRMItemCurrent() {
+export default function CRMItemPage() {
 	const [showMore, setShowMore] = useState(false);
 	const [activeThumb, setActiveThumb] = useState(0);
 
@@ -203,7 +196,7 @@ function CRMItemCurrent() {
 					<div className="border-b border-gray-200 px-6 py-10">
 						<Container size="lg">
 							<div className="flex flex-col gap-10 lg:flex-row lg:gap-12">
-								<WireframeSection label="Key details" className="order-first w-full border-2 border-red-500 p-4 lg:order-last lg:w-56 lg:shrink-0">
+								<WireframeSection label="Key details" className="order-first w-full lg:order-last lg:w-56 lg:shrink-0">
 									<h2 className="font-mono text-section font-medium tracking-tight text-gray-900 mb-4">Key details</h2>
 									{/* Fields to be decided */}
 									<div className="flex items-center justify-center border-2 border-gray-300 py-16">
@@ -228,7 +221,7 @@ function CRMItemCurrent() {
 										)}
 									</WireframeSection>
 
-									<WireframeSection label="Object information" className="mt-10 border-2 border-red-500 p-4">
+									<WireframeSection label="Object information" className="mt-10">
 										<h2 className="font-mono text-section font-medium tracking-tight text-gray-900 mb-6">Object information</h2>
 										<ObjectInfoFields />
 									</WireframeSection>
@@ -267,19 +260,5 @@ function CRMItemCurrent() {
 				<NtsFooter />
 			</div>
 		</ScopePage>
-	);
-}
-
-// Post-MVP is a separate copy so it can diverge without touching MVP
-function CRMItemContent() {
-	const variation = usePageVariations(VARIATIONS);
-	return variation === "post-mvp" ? <CrmItemPostMvp /> : <CRMItemCurrent />;
-}
-
-export default function CRMItemPage() {
-	return (
-		<Suspense>
-			<CRMItemContent />
-		</Suspense>
 	);
 }
