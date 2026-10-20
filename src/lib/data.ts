@@ -92,6 +92,14 @@ export const pages: WireframePage[] = [
 		status: "wip",
 		group: "Ideas",
 	},
+	{
+		id: "object-embeds",
+		title: "Embeddable Object Components",
+		description:
+			"Embeddable collection object components in small, medium, large and card sizes, with zoomable images",
+		status: "wip",
+		group: "Ideas",
+	},
 ];
 
 export const PAGE_GROUPS = ["MVP", "Ideas"] as const;
@@ -117,6 +125,7 @@ export const navigation: NavNode[] = [
 			{ label: "Map Explorer", href: "/map" },
 			{ label: "Object Page", href: "/crm-item" },
 			{ label: "Collection Search", href: "/crm-search" },
+			{ label: "Embeddable Object Components", href: "/object-embeds" },
 		],
 	},
 ];
