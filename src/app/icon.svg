@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+	<!-- Mackintosh-style M: tall narrow stems, a small high-set V, square accent -->
+	<rect width="32" height="32" fill="#111111" />
+	<g fill="#ffffff">
+		<rect x="8" y="3" width="3" height="26" />
+		<rect x="21" y="3" width="3" height="26" />
+		<polygon points="11,3 13.6,3 16,7.6 18.4,3 21,3 17.2,10.6 14.8,10.6" />
+		<rect x="14.75" y="13" width="2.5" height="2.5" />
+		<rect x="14.75" y="17.5" width="2.5" height="2.5" />
+	</g>
+</svg>
