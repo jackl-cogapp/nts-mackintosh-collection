@@ -395,10 +395,6 @@ function InSituView({ onZoom }: { onZoom: (obj: ObjectData) => void }) {
 			/>
 
 			<article>
-				<ImagePlaceholder
-					className="aspect-[21/9] w-full"
-					label="[Hero image: The Hill House exterior]"
-				/>
 
 				<div className="px-6 py-12">
 					<Container size="sm">
