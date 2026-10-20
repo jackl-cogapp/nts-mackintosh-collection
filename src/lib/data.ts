@@ -36,7 +36,7 @@ export const pages: WireframePage[] = [
 	// ── MVP ────────────────────────────────────────────────────────────
 	{
 		id: "collection-home-mvp",
-		title: "Mackintosh Collection Home — MVP",
+		title: "Mackintosh Landing Page",
 		description:
 			"Collection homepage with hero, search widget, theme bubble explorer, and iconic works strip",
 		status: "wip",
@@ -57,6 +57,16 @@ export const pages: WireframePage[] = [
 			"Charles Rennie Mackintosh collection search page with faceted sidebar filters and card grid",
 		status: "wip",
 		group: "MVP",
+	},
+
+	// ── Post-MVP ───────────────────────────────────────────────────────
+	{
+		id: "object-embeds",
+		title: "Embeddable Object Components",
+		description:
+			"Embeddable collection object components in small, medium, large and card sizes, with zoomable images",
+		status: "wip",
+		group: "Post-MVP",
 	},
 
 	// ── Ideas ──────────────────────────────────────────────────────────
@@ -82,14 +92,6 @@ export const pages: WireframePage[] = [
 		description:
 			"Interactive map of Mackintosh locations across Scotland/UK and Europe with clickable pins",
 		status: "wip",
-		group: "Archive",
-	},
-	{
-		id: "object-embeds",
-		title: "Embeddable Object Components",
-		description:
-			"Embeddable collection object components in small, medium, large and card sizes, with zoomable images",
-		status: "wip",
 		group: "Ideas",
 	},
 	{
@@ -102,7 +104,7 @@ export const pages: WireframePage[] = [
 	},
 ];
 
-export const PAGE_GROUPS = ["MVP", "Ideas", "Archive"] as const;
+export const PAGE_GROUPS = ["MVP", "Post-MVP", "Ideas"] as const;
 
 // ── Navigation tree ──────────────────────────────────────────────────
 
@@ -119,18 +121,14 @@ export const navigation: NavNode[] = [
 		href: "",
 		children: [
 			{ label: "Collection Home — Not MVP", href: "/collection-home" },
-			{ label: "Collection Home — MVP", href: "/collection-home-mvp" },
+			{ label: "Landing Page", href: "/collection-home-mvp" },
 			{ label: "Timeline", href: "/timeline" },
+			{ label: "Map Explorer", href: "/map" },
 			{ label: "Object Page", href: "/crm-item" },
 			{ label: "Collection Search", href: "/crm-search" },
 			{ label: "Embeddable Object Components", href: "/object-embeds" },
 			{ label: "Interior Photos", href: "/interior-photos" },
 		],
-	},
-	{
-		label: "Archive",
-		href: "",
-		children: [{ label: "Map Explorer", href: "/map" }],
 	},
 ];
 
