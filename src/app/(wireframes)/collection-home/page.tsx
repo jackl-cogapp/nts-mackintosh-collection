@@ -42,7 +42,7 @@ function CollectionHomeContent() {
 				<NtsHeader
 					breadcrumb={[
 						{ label: "Home" },
-						{ label: "Collections", href: "/explore-collections" },
+						{ label: "Collections" },
 						{ label: "Charles Rennie Mackintosh" },
 					]}
 				/>

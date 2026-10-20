@@ -5,19 +5,26 @@ import {
 	Container,
 	ImagePlaceholder,
 	WireframeSection,
+	usePageVariations,
 } from "@/components/wireframe";
 import NtsFooter from "@/components/wireframe/NtsFooter";
 import NtsHeader from "@/components/wireframe/NtsHeader";
 import { ScopePage } from "@/providers/ScopeProvider";
+import CollectionHomeBrowseBy from "./CollectionHomeBrowseBy";
 
-function CollectionHomeMvpContent() {
+const VARIATIONS = [
+	{ key: "mvp", label: "MVP" },
+	{ key: "browse-by", label: "Browse by" },
+] as const;
+
+function CollectionHomeMvpCurrent() {
 	return (
 		<ScopePage id="collection-home-mvp">
 			<div className="min-h-screen bg-white">
 				<NtsHeader
 					breadcrumb={[
 						{ label: "Home" },
-						{ label: "Collections", href: "/explore-collections" },
+						{ label: "Collections" },
 						{ label: "Charles Rennie Mackintosh" },
 					]}
 				/>
@@ -110,6 +117,16 @@ function CollectionHomeMvpContent() {
 				<NtsFooter />
 			</div>
 		</ScopePage>
+	);
+}
+
+// "Browse by" is a separate copy so it can diverge without touching MVP
+function CollectionHomeMvpContent() {
+	const variation = usePageVariations(VARIATIONS);
+	return variation === "browse-by" ? (
+		<CollectionHomeBrowseBy />
+	) : (
+		<CollectionHomeMvpCurrent />
 	);
 }
 

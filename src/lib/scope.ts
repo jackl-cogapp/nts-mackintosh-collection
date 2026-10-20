@@ -11,14 +11,15 @@ const linear = (id: string) => `https://linear.app/team/issue/${id}`;
 const issue = linear;
 
 export const scope: Record<string, ScopeEntry> = {
-	"explore-collections/Page header": { mvp: false, issueUrl: issue("MAC-1") },
-	"explore-collections/Collection cards": { mvp: false, issueUrl: issue("MAC-2") },
 	"collection-home/Hero": { mvp: false, issueUrl: issue("MAC-3") },
 	"collection-home/Collections search": { mvp: false, issueUrl: issue("MAC-4") },
 	"collection-home/Explore by theme": { mvp: false, note: "Bubble sizing TBD", issueUrl: issue("MAC-5") },
 	"collection-home/Explore iconic works": { mvp: false, issueUrl: issue("MAC-6") },
 	"collection-home-mvp/Hero": { mvp: true, issueUrl: issue("MAC-3") },
 	"collection-home-mvp/Collections search": { mvp: true, issueUrl: issue("MAC-4") },
+	// "Browse by" tab on /collection-home-mvp, copy of MVP
+	"collection-home-mvp-browse-by/Hero": { mvp: true, issueUrl: issue("MAC-3") },
+	"collection-home-mvp-browse-by/Collections search": { mvp: true, issueUrl: issue("MAC-4") },
 	"timeline/Page header": { mvp: false, issueUrl: issue("MAC-7") },
 	"timeline/Timeline": { mvp: false, note: "Content and dates to be confirmed", issueUrl: issue("MAC-8") },
 	"map/Page header": { mvp: false, issueUrl: issue("MAC-9") },

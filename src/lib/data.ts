@@ -61,14 +61,6 @@ export const pages: WireframePage[] = [
 
 	// ── Ideas ──────────────────────────────────────────────────────────
 	{
-		id: "explore-collections",
-		title: "Collections Hub",
-		description:
-			"Landing page listing NTS online collections — entry point for Robert Burns and Mackintosh",
-		status: "wip",
-		group: "Ideas",
-	},
-	{
 		id: "collection-home",
 		title: "Mackintosh Collection Home — Not MVP",
 		description:
@@ -90,7 +82,7 @@ export const pages: WireframePage[] = [
 		description:
 			"Interactive map of Mackintosh locations across Scotland/UK and Europe with clickable pins",
 		status: "wip",
-		group: "Ideas",
+		group: "Archive",
 	},
 	{
 		id: "object-embeds",
@@ -100,9 +92,17 @@ export const pages: WireframePage[] = [
 		status: "wip",
 		group: "Ideas",
 	},
+	{
+		id: "interior-photos",
+		title: "Interior Photos",
+		description:
+			"Object page with a zoomable interior room photo, in sidebar, full width and More details variations",
+		status: "wip",
+		group: "Ideas",
+	},
 ];
 
-export const PAGE_GROUPS = ["MVP", "Ideas"] as const;
+export const PAGE_GROUPS = ["MVP", "Ideas", "Archive"] as const;
 
 // ── Navigation tree ──────────────────────────────────────────────────
 
@@ -118,15 +118,19 @@ export const navigation: NavNode[] = [
 		label: "Mackintosh",
 		href: "",
 		children: [
-			{ label: "Explore Collections", href: "/explore-collections" },
 			{ label: "Collection Home — Not MVP", href: "/collection-home" },
 			{ label: "Collection Home — MVP", href: "/collection-home-mvp" },
 			{ label: "Timeline", href: "/timeline" },
-			{ label: "Map Explorer", href: "/map" },
 			{ label: "Object Page", href: "/crm-item" },
 			{ label: "Collection Search", href: "/crm-search" },
 			{ label: "Embeddable Object Components", href: "/object-embeds" },
+			{ label: "Interior Photos", href: "/interior-photos" },
 		],
+	},
+	{
+		label: "Archive",
+		href: "",
+		children: [{ label: "Map Explorer", href: "/map" }],
 	},
 ];
 

@@ -8,7 +8,6 @@ import {
 	SectionLabel,
 	WireframeSection,
 } from "@/components/wireframe";
-import NtsFooter from "@/components/wireframe/NtsFooter";
 import NtsHeader from "@/components/wireframe/NtsHeader";
 import { ScopePage } from "@/providers/ScopeProvider";
 
@@ -188,7 +187,7 @@ function ResultCard({ item }: { item: CRMItem }) {
 	return (
 		<article className="flex flex-col border border-gray-200 bg-white hover:border-gray-400">
 			<ImagePlaceholder className="aspect-square w-full" />
-			<div className="flex flex-1 flex-col gap-1.5 border-2 border-red-500 p-3">
+			<div className="flex flex-1 flex-col gap-1.5 p-3">
 				<span className="inline-block self-start border border-gray-400 bg-gray-100 px-1.5 py-0.5 font-mono text-label uppercase tracking-[0.08em] text-gray-600">
 					{item.objectType}
 				</span>
@@ -294,7 +293,7 @@ export default function CrmSearchUiTweaks() {
 				{/* Layout */}
 				<div ref={resultsRef} className="flex flex-col border-t border-gray-300 px-6 pt-8 lg:flex-row">
 					{/* Sidebar */}
-					<WireframeSection label="Filters" className="w-full border-2 border-red-500 lg:w-56 lg:shrink-0 lg:self-start lg:sticky lg:top-0">
+					<WireframeSection label="Filters" className="w-full lg:w-56 lg:shrink-0 lg:self-start lg:sticky lg:top-0">
 						<button
 							type="button"
 							onClick={() => setFiltersOpen((o) => !o)}
@@ -461,8 +460,6 @@ export default function CrmSearchUiTweaks() {
 						</div>
 					</WireframeSection>
 				</div>
-
-				<NtsFooter />
 			</div>
 		</ScopePage>
 	);
