@@ -183,10 +183,26 @@ function CheckOption({ label, checked, onChange, count, disabled = false }: { la
 	);
 }
 
+// Masonry: each image keeps a natural-feeling shape for its object type,
+// so cards vary in height and stack into uneven columns
+const IMAGE_ASPECT: Record<ObjectType, string> = {
+	"Architectural Drawing": "4/3",
+	Watercolour: "3/4",
+	"Oil Painting": "2/3",
+	Furniture: "3/5",
+	Textile: "4/5",
+	Photograph: "5/4",
+	Letter: "3/4",
+	Print: "4/5",
+	Poster: "2/3",
+	Metalwork: "1/1",
+	Sketch: "3/2",
+};
+
 function ResultCard({ item }: { item: CRMItem }) {
 	return (
 		<article className="flex flex-col border border-gray-200 bg-white hover:border-gray-400">
-			<ImagePlaceholder className="aspect-square w-full" />
+			<ImagePlaceholder aspect={IMAGE_ASPECT[item.objectType]} className="w-full" />
 			<div className="flex flex-1 flex-col gap-1.5 p-3">
 				<span className="inline-block self-start border border-gray-400 bg-gray-100 px-1.5 py-0.5 font-mono text-label uppercase tracking-[0.08em] text-gray-600">
 					{item.objectType}
@@ -195,6 +211,23 @@ function ResultCard({ item }: { item: CRMItem }) {
 				<p className="font-mono text-label text-gray-500">Creator: {item.creators.join(", ")}</p>
 			</div>
 		</article>
+	);
+}
+
+// Deal items into columns left-to-right (1→col 1, 2→col 2, 3→col 3, 4→col 1…)
+// so results still read across the top row, like the reference masonry grid
+function MasonryColumns({ items, count, className }: { items: CRMItem[]; count: number; className: string }) {
+	const columns = Array.from({ length: count }, (_, c) => items.filter((_, i) => i % count === c));
+	return (
+		<div className={`gap-6 ${className}`}>
+			{columns.map((col, c) => (
+				<div key={c} className="flex min-w-0 flex-1 flex-col gap-6">
+					{col.map((item) => (
+						<ResultCard key={item.id} item={item} />
+					))}
+				</div>
+			))}
+		</div>
 	);
 }
 
@@ -217,7 +250,8 @@ const FILTER_LABELS: Record<FilterKey, string> = {
 type OpenAccordion = "date" | "creator" | "designer" | "maker" | "location" | "material" | "category" | "associatedPerson" | null;
 type SortOrder = "relevance" | "dateAsc" | "dateDesc" | "titleAz";
 
-export default function CrmSearchUiTweaks() {
+// UI Tweaks + Masonry: the proposed search UI tweaks with a masonry results grid
+export default function SearchUiTweaksMasonryPage() {
 	const [filters, setFilters] = useState<Filters>(emptyFilters());
 	const [query, setQuery] = useState("");
 	const [sort, setSort] = useState<SortOrder>("relevance");
@@ -256,7 +290,7 @@ export default function CrmSearchUiTweaks() {
 	}
 
 	return (
-		<ScopePage id="crm-search-ui-tweaks">
+		<ScopePage id="search-ui-tweaks-masonry">
 			<div className="min-h-screen bg-white">
 				<NtsHeader breadcrumb={[{ label: "Home" }, { label: "Collections" }, { label: "Charles Rennie Mackintosh" }, { label: "Search" }]} />
 
@@ -429,11 +463,11 @@ export default function CrmSearchUiTweaks() {
 								No items match your filters.
 							</div>
 						) : (
-							<div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
-								{pageItems.map((item) => (
-									<ResultCard key={item.id} item={item} />
-								))}
-							</div>
+							<>
+								<MasonryColumns items={pageItems} count={1} className="flex sm:hidden" />
+								<MasonryColumns items={pageItems} count={2} className="hidden sm:flex lg:hidden" />
+								<MasonryColumns items={pageItems} count={3} className="hidden lg:flex" />
+							</>
 						)}
 
 						{totalPages > 1 && (

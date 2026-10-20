@@ -78,6 +78,15 @@ export const pages: WireframePage[] = [
 		group: "Post-MVP",
 	},
 
+	{
+		id: "search-ui-tweaks-masonry",
+		title: "UI Tweaks + Masonry",
+		description:
+			"Collection search with the proposed UI tweaks (filters, count/sort row, filter chips, card fields) and a masonry results grid",
+		status: "wip",
+		group: "Post-MVP",
+	},
+
 	// ── Ideas ──────────────────────────────────────────────────────────
 	{
 		id: "collection-home",
@@ -143,6 +152,7 @@ export const navigation: NavNode[] = [
 			{ label: "Map Explorer", href: "/map" },
 			{ label: "Object Page", href: "/crm-item" },
 			{ label: "Collection Search", href: "/crm-search" },
+			{ label: "UI Tweaks + Masonry", href: "/search-ui-tweaks-masonry" },
 			{ label: "Browse By", href: "/browse-by" },
 			{ label: "Embeddable Object Components", href: "/object-embeds" },
 			{ label: "Interior Photos", href: "/interior-photos" },

@@ -37,16 +37,11 @@ export const scope: Record<string, ScopeEntry> = {
 	"crm-search/Search bar": { mvp: true, issueUrl: issue("CRM-2") },
 	"crm-search/Filters": { mvp: true, issueUrl: issue("CRM-3") },
 	"crm-search/Results grid": { mvp: true, issueUrl: issue("CRM-4") },
-	// "UI Tweaks" tab on /crm-search — proposed changes, not in MVP scope
-	"crm-search-ui-tweaks/Hero": { mvp: true, issueUrl: issue("CRM-1") },
-	"crm-search-ui-tweaks/Search bar": { mvp: false, note: "Proposed UI tweak: narrower search bar", issueUrl: issue("CRM-2") },
-	"crm-search-ui-tweaks/Filters": { mvp: false, note: "Proposed UI tweak: sidebar raised level with the count/sort row", issueUrl: issue("CRM-3") },
-	"crm-search-ui-tweaks/Results grid": { mvp: false, note: "Proposed UI tweak: count/sort row, filter chips, card fields", issueUrl: issue("CRM-4") },
-	// "Masonry" tab on /crm-search — copy of UI Tweaks
-	"crm-search-masonry/Hero": { mvp: true, issueUrl: issue("CRM-1") },
-	"crm-search-masonry/Search bar": { mvp: false, note: "Proposed UI tweak: narrower search bar", issueUrl: issue("CRM-2") },
-	"crm-search-masonry/Filters": { mvp: false, note: "Proposed UI tweak: sidebar raised level with the count/sort row", issueUrl: issue("CRM-3") },
-	"crm-search-masonry/Results grid": { mvp: false, note: "Proposed UI tweak: count/sort row, filter chips, card fields", issueUrl: issue("CRM-4") },
+	// UI Tweaks + Masonry (Post-MVP), split out of the Collection Search tabs
+	"search-ui-tweaks-masonry/Hero": { mvp: false, issueUrl: issue("CRM-1") },
+	"search-ui-tweaks-masonry/Search bar": { mvp: false, note: "Proposed UI tweak: narrower search bar", issueUrl: issue("CRM-2") },
+	"search-ui-tweaks-masonry/Filters": { mvp: false, note: "Proposed UI tweak: sidebar raised level with the count/sort row", issueUrl: issue("CRM-3") },
+	"search-ui-tweaks-masonry/Results grid": { mvp: false, note: "Proposed UI tweak: count/sort row, filter chips, card fields", issueUrl: issue("CRM-4") },
 };
 
 export function getAnnotation(pageId: string | undefined, label: string): ScopeEntry | undefined {
