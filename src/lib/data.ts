@@ -90,7 +90,7 @@ export const pages: WireframePage[] = [
 	// ── Ideas ──────────────────────────────────────────────────────────
 	{
 		id: "collection-home",
-		title: "Mackintosh Collection Home — Not MVP",
+		title: "Mackintosh Landing — Rose Concept",
 		description:
 			"Collection homepage with hero, search widget, theme bubble explorer, and iconic works strip",
 		status: "wip",
@@ -146,7 +146,7 @@ export const navigation: NavNode[] = [
 		label: "Mackintosh",
 		href: "",
 		children: [
-			{ label: "Collection Home — Not MVP", href: "/collection-home" },
+			{ label: "Landing — Rose Concept", href: "/collection-home" },
 			{ label: "Landing Page", href: "/collection-home-mvp" },
 			{ label: "Timeline", href: "/timeline" },
 			{ label: "Map Explorer", href: "/map" },
