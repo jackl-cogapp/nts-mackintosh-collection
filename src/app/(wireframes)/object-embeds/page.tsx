@@ -6,7 +6,6 @@ import {
 	ImagePlaceholder,
 	usePageVariations,
 } from "@/components/wireframe";
-import NtsFooter from "@/components/wireframe/NtsFooter";
 import NtsHeader from "@/components/wireframe/NtsHeader";
 import { ScopePage } from "@/providers/ScopeProvider";
 
@@ -557,7 +556,6 @@ function InSituView({ onZoom }: { onZoom: (obj: ObjectData) => void }) {
 				</div>
 			</article>
 
-			<NtsFooter />
 		</div>
 	);
 }
