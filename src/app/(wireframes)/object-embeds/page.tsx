@@ -361,21 +361,6 @@ const STORY_OBJECTS: Record<string, ObjectData> = {
 	},
 };
 
-const RELATED_STORIES = [
-	{
-		kicker: "Conservation",
-		title: "Saving The Hill House: life inside the box",
-	},
-	{
-		kicker: "People",
-		title: "Margaret Macdonald and the Glasgow Style",
-	},
-	{
-		kicker: "Places to visit",
-		title: "A day out in Helensburgh",
-	},
-];
-
 function StoryParagraph({ children }: { children: React.ReactNode }) {
 	return <p className="font-mono text-body leading-[1.7]">{children}</p>;
 }
@@ -394,7 +379,6 @@ function InSituView({ onZoom }: { onZoom: (obj: ObjectData) => void }) {
 			/>
 
 			<article>
-
 				<div className="px-6 py-12">
 					<Container size="sm">
 						<p className="mb-4 font-mono text-label uppercase tracking-[0.08em] text-gray-500">
@@ -527,35 +511,7 @@ function InSituView({ onZoom }: { onZoom: (obj: ObjectData) => void }) {
 						</p>
 					</Container>
 				</div>
-
-				<div className="border-t border-gray-200 px-6 py-16">
-					<Container size="md">
-						<h2 className="mb-6 font-mono text-section font-medium tracking-tight">
-							Related stories
-						</h2>
-						<div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
-							{RELATED_STORIES.map((story) => (
-								<a
-									key={story.title}
-									href="#related"
-									className="block border border-gray-300 hover:border-gray-500 hover:bg-gray-50"
-								>
-									<ImagePlaceholder className="aspect-[4/3] w-full" />
-									<div className="p-4">
-										<p className="mb-2 font-mono text-label uppercase tracking-[0.08em] text-gray-500">
-											{story.kicker}
-										</p>
-										<p className="font-mono text-card font-medium leading-snug tracking-tight">
-											{story.title}
-										</p>
-									</div>
-								</a>
-							))}
-						</div>
-					</Container>
-				</div>
 			</article>
-
 		</div>
 	);
 }
