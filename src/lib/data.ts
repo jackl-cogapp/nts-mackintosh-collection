@@ -94,6 +94,13 @@ export const pages: WireframePage[] = [
 		status: "wip",
 		group: "Post-MVP",
 	},
+	{
+		id: "location-link",
+		title: "Location link",
+		description: "Object page for linking an object to its location, currently a copy of the Object Page",
+		status: "wip",
+		group: "Post-MVP",
+	},
 
 	// ── Ideas ──────────────────────────────────────────────────────────
 	{
@@ -160,6 +167,7 @@ export const navigation: NavNode[] = [
 			{ label: "Map Explorer", href: "/map" },
 			{ label: "Object Page", href: "/crm-item" },
 			{ label: "Onward Journeys", href: "/onward-journeys" },
+			{ label: "Location link", href: "/location-link" },
 			{ label: "Collection Search", href: "/crm-search" },
 			{ label: "UI Tweaks + Masonry", href: "/search-ui-tweaks-masonry" },
 			{ label: "Browse By", href: "/browse-by" },

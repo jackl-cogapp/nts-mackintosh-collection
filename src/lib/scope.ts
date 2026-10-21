@@ -33,6 +33,11 @@ export const scope: Record<string, ScopeEntry> = {
 	"onward-journeys/Key details": { mvp: false, issueUrl: issue("CRM-6") },
 	"onward-journeys/Description": { mvp: false, issueUrl: issue("CRM-7") },
 	"onward-journeys/Object information": { mvp: false, issueUrl: issue("CRM-8") },
+	// Location link (Post-MVP), copy of the Object Page
+	"location-link/Image viewer": { mvp: false, issueUrl: issue("CRM-5") },
+	"location-link/Key details": { mvp: false, issueUrl: issue("CRM-6") },
+	"location-link/Description": { mvp: false, issueUrl: issue("CRM-7") },
+	"location-link/Object information": { mvp: false, issueUrl: issue("CRM-8") },
 	// Object Page tombstone layout, split out of the Object Page tabs
 	"object-page-tombstone/Image viewer": { mvp: false, issueUrl: issue("CRM-5") },
 	"object-page-tombstone/Key details": { mvp: false, issueUrl: issue("CRM-6") },
