@@ -1,14 +1,53 @@
 "use client";
 
-import { type ReactNode, useState } from "react";
+import { type ReactNode, Suspense, useState } from "react";
 import {
 	Container,
 	ImagePlaceholder,
 	WireframeSection,
+	usePageVariations,
 } from "@/components/wireframe";
 import NtsFooter from "@/components/wireframe/NtsFooter";
 import NtsHeader from "@/components/wireframe/NtsHeader";
 import { ScopePage } from "@/providers/ScopeProvider";
+
+const VARIATIONS = [
+	{ key: "object-page", label: "Object Page" },
+	{ key: "metadata", label: "Metadata" },
+] as const;
+
+// Onward journeys by metadata (NTS11-44): each card leads to another object
+// that shares one metadata value with this one
+const METADATA_JOURNEYS = [
+	{
+		field: "Material",
+		value: "Mother of Pearl",
+		title: "Writing Cabinet",
+		objectType: "Furniture",
+		date: "1904",
+	},
+	{
+		field: "Maker",
+		value: "John Craig",
+		title: "Ladder-back Chair",
+		objectType: "Furniture",
+		date: "1903",
+	},
+	{
+		field: "Theme",
+		value: "Lighting",
+		title: "Hall Lantern",
+		objectType: "Metalwork",
+		date: "1904",
+	},
+	{
+		field: "Associated person",
+		value: "Walter Blackie",
+		title: "Hill House, Ground Floor Plan",
+		objectType: "Architectural Drawing",
+		date: "1902",
+	},
+];
 
 // ── Mock item ───────────────────────────────────────────────────────────
 
@@ -135,7 +174,8 @@ function ObjectInfoFields() {
 // ── Page ────────────────────────────────────────────────────────────────
 
 // Onward Journeys: started as a copy of the Object Page
-export default function OnwardJourneysPage() {
+function OnwardJourneysContent() {
+	const variation = usePageVariations(VARIATIONS);
 	const [showMore, setShowMore] = useState(false);
 	const [activeThumb, setActiveThumb] = useState(0);
 
@@ -231,22 +271,60 @@ export default function OnwardJourneysPage() {
 						</Container>
 					</div>
 
-				{/* More by this creator */}
-				<WireframeSection label="More by this creator" className="border-b border-gray-200 px-6 py-10">
-					<Container size="lg">
-						<h2 className="font-mono text-section font-medium tracking-tight text-gray-900 mb-6">You might also like</h2>
-						<div className="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-4">
-							{relatedByCreator.map((obj, i) => (
-								<a key={i} href="#" className="group flex flex-col gap-2 hover:opacity-80">
-									<ImagePlaceholder className="w-full aspect-square" />
-									<span className="font-mono text-label uppercase tracking-[0.08em] text-gray-500">{obj.objectType}</span>
-									<span className="font-mono text-meta font-medium text-gray-900 leading-snug group-hover:underline">{obj.title}</span>
-									<span className="font-mono text-label text-gray-400">{obj.date}</span>
-								</a>
-							))}
-						</div>
-					</Container>
-				</WireframeSection>
+				{/* More by this creator (Object Page tab only) */}
+				{variation !== "metadata" && (
+					<WireframeSection label="More by this creator" className="border-b border-gray-200 px-6 py-10">
+						<Container size="lg">
+							<h2 className="font-mono text-section font-medium tracking-tight text-gray-900 mb-6">You might also like</h2>
+							<div className="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-4">
+								{relatedByCreator.map((obj, i) => (
+									<a key={i} href="#" className="group flex flex-col gap-2 hover:opacity-80">
+										<ImagePlaceholder className="w-full aspect-square" />
+										<span className="font-mono text-label uppercase tracking-[0.08em] text-gray-500">{obj.objectType}</span>
+										<span className="font-mono text-meta font-medium text-gray-900 leading-snug group-hover:underline">{obj.title}</span>
+										<span className="font-mono text-label text-gray-400">{obj.date}</span>
+									</a>
+								))}
+							</div>
+						</Container>
+					</WireframeSection>
+				)}
+
+				{/* Onward journeys by metadata (Metadata tab) */}
+				{variation === "metadata" && (
+					<WireframeSection
+						label="Onward journeys"
+						className="border-b border-gray-200 px-6 py-10"
+					>
+						<Container size="lg">
+							<h2 className="font-mono text-section font-medium tracking-tight text-gray-900 mb-6">
+								Explore objects like this
+							</h2>
+							<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+								{METADATA_JOURNEYS.map((j) => (
+									<a
+										key={j.field}
+										href="#"
+										className="group flex flex-col border border-gray-300 hover:border-gray-500 hover:bg-gray-50"
+									>
+										<ImagePlaceholder className="w-full" aspect="1/1" />
+										<span className="flex flex-col gap-1 p-4">
+											<span className="font-mono text-label uppercase tracking-[0.08em] text-gray-500">
+												{j.field}: {j.value}
+											</span>
+											<span className="font-mono text-card font-medium leading-snug tracking-tight text-gray-900 group-hover:underline">
+												{j.title}
+											</span>
+											<span className="font-mono text-label text-gray-400">
+												{j.objectType}, {j.date}
+											</span>
+										</span>
+									</a>
+								))}
+							</div>
+						</Container>
+					</WireframeSection>
+				)}
 
 				{/* Caring for Collections CTA */}
 				<WireframeSection label="Caring for collections CTA" className="bg-gray-700 px-6 py-32 text-center text-white">
@@ -261,5 +339,13 @@ export default function OnwardJourneysPage() {
 				<NtsFooter />
 			</div>
 		</ScopePage>
+	);
+}
+
+export default function OnwardJourneysPage() {
+	return (
+		<Suspense>
+			<OnwardJourneysContent />
+		</Suspense>
 	);
 }
