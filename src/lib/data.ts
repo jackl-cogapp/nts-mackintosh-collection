@@ -87,6 +87,14 @@ export const pages: WireframePage[] = [
 		group: "Post-MVP",
 	},
 
+	{
+		id: "onward-journeys",
+		title: "Onward Journeys",
+		description: "Object page for exploring onward journeys, currently a copy of the Object Page",
+		status: "wip",
+		group: "Post-MVP",
+	},
+
 	// ── Ideas ──────────────────────────────────────────────────────────
 	{
 		id: "collection-home",
@@ -151,6 +159,7 @@ export const navigation: NavNode[] = [
 			{ label: "Timeline", href: "/timeline" },
 			{ label: "Map Explorer", href: "/map" },
 			{ label: "Object Page", href: "/crm-item" },
+			{ label: "Onward Journeys", href: "/onward-journeys" },
 			{ label: "Collection Search", href: "/crm-search" },
 			{ label: "UI Tweaks + Masonry", href: "/search-ui-tweaks-masonry" },
 			{ label: "Browse By", href: "/browse-by" },
