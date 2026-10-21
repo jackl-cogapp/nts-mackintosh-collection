@@ -26,6 +26,11 @@ const ITEM = {
 	period: "Early 20th century",
 	date: "1905",
 	onDisplay: false,
+	// NTS11-47: property name only, linking to the NTS Place page
+	location: {
+		name: "The Hill House",
+		href: "https://www.nts.org.uk/visit/places/the-hill-house",
+	},
 	acquisition: "",
 	category: "Furniture",
 	materials: ["Sycamore", "Mother of Pearl"],
@@ -84,7 +89,8 @@ function FieldLink({ children }: { children: ReactNode }) {
 
 // MVP object information: four headline fields, the rest behind "More details"
 function ObjectInfoFields() {
-	const [expanded, setExpanded] = useState(false);
+	// Open by default so the Location field is visible for review
+	const [expanded, setExpanded] = useState(true);
 	return (
 		<div className="max-w-prose">
 			<div className="grid grid-cols-2 gap-x-8 gap-y-6">
@@ -103,6 +109,19 @@ function ObjectInfoFields() {
 			{expanded && (
 				<div className="mt-6 grid grid-cols-2 gap-x-8 gap-y-6 border-t border-gray-200 pt-6">
 					<ObjectInfoField label="On display">{ITEM.onDisplay ? "Yes" : "No"}</ObjectInfoField>
+					<ObjectInfoField label="Location">
+						<a
+							href={ITEM.location.href}
+							target="_blank"
+							rel="noopener noreferrer"
+							title={`Visit ${ITEM.location.name} on nts.org.uk`}
+							className="underline text-gray-700 hover:text-black"
+						>
+							{ITEM.location.name}
+							<span aria-hidden="true"> ↗</span>
+							<span className="sr-only"> (opens the NTS place page in a new tab)</span>
+						</a>
+					</ObjectInfoField>
 					<ObjectInfoField label="Category">
 						{ITEM.category ? <FieldLink>{ITEM.category}</FieldLink> : <Dash />}
 					</ObjectInfoField>
