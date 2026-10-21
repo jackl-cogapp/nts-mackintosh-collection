@@ -16,37 +16,13 @@ const VARIATIONS = [
 	{ key: "metadata", label: "Metadata" },
 ] as const;
 
-// Onward journeys by metadata (NTS11-44): each card leads to another object
-// that shares one metadata value with this one
+// Onward journeys by metadata (NTS11-44): each card is a canned search for
+// one of this object's metadata values
 const METADATA_JOURNEYS = [
-	{
-		field: "Material",
-		value: "Mother of Pearl",
-		title: "Writing Cabinet",
-		objectType: "Furniture",
-		date: "1904",
-	},
-	{
-		field: "Maker",
-		value: "John Craig",
-		title: "Ladder-back Chair",
-		objectType: "Furniture",
-		date: "1903",
-	},
-	{
-		field: "Theme",
-		value: "Lighting",
-		title: "Hall Lantern",
-		objectType: "Metalwork",
-		date: "1904",
-	},
-	{
-		field: "Associated person",
-		value: "Walter Blackie",
-		title: "Hill House, Ground Floor Plan",
-		objectType: "Architectural Drawing",
-		date: "1902",
-	},
+	{ field: "Category", value: "Furniture", count: 312 },
+	{ field: "Material", value: "Mother of Pearl", count: 18 },
+	{ field: "Maker", value: "John Craig", count: 27 },
+	{ field: "Theme", value: "Lighting", count: 41 },
 ];
 
 // ── Mock item ───────────────────────────────────────────────────────────
@@ -298,25 +274,25 @@ function OnwardJourneysContent() {
 					>
 						<Container size="lg">
 							<h2 className="font-mono text-section font-medium tracking-tight text-gray-900 mb-6">
-								Explore objects like this
+								Explore more like this
 							</h2>
 							<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
 								{METADATA_JOURNEYS.map((j) => (
 									<a
-										key={j.field}
-										href="#"
+										key={`${j.field}-${j.value}`}
+										href="/crm-search"
 										className="group flex flex-col border border-gray-300 hover:border-gray-500 hover:bg-gray-50"
 									>
 										<ImagePlaceholder className="w-full" aspect="1/1" />
 										<span className="flex flex-col gap-1 p-4">
 											<span className="font-mono text-label uppercase tracking-[0.08em] text-gray-500">
-												{j.field}: {j.value}
+												{j.field}
 											</span>
 											<span className="font-mono text-card font-medium leading-snug tracking-tight text-gray-900 group-hover:underline">
-												{j.title}
+												{j.value}
 											</span>
-											<span className="font-mono text-label text-gray-400">
-												{j.objectType}, {j.date}
+											<span className="font-mono text-label text-gray-400 tabular-nums">
+												{j.count} objects
 											</span>
 										</span>
 									</a>
