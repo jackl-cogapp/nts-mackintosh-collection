@@ -23,29 +23,21 @@ const METADATA_JOURNEYS = [
 		field: "Material",
 		value: "Mother of Pearl",
 		title: "Writing Cabinet",
-		objectType: "Furniture",
-		date: "1904",
 	},
 	{
 		field: "Maker",
 		value: "John Craig",
 		title: "Ladder-back Chair",
-		objectType: "Furniture",
-		date: "1903",
 	},
 	{
 		field: "Theme",
 		value: "Lighting",
 		title: "Hall Lantern",
-		objectType: "Metalwork",
-		date: "1904",
 	},
 	{
 		field: "Associated person",
 		value: "Walter Blackie",
 		title: "Hill House, Ground Floor Plan",
-		objectType: "Architectural Drawing",
-		date: "1902",
 	},
 ];
 
@@ -314,9 +306,6 @@ function OnwardJourneysContent() {
 											</span>
 											<span className="font-mono text-card font-medium leading-snug tracking-tight text-gray-900 group-hover:underline">
 												{j.title}
-											</span>
-											<span className="font-mono text-label text-gray-400">
-												{j.objectType}, {j.date}
 											</span>
 										</span>
 									</a>
