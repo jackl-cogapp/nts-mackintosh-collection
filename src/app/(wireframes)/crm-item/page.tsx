@@ -242,7 +242,8 @@ export default function CRMItemPage() {
 
 					<div className="border-b border-gray-200 px-6 py-10">
 						<Container size="lg">
-							<div className="flex flex-col gap-10 lg:flex-row lg:gap-12">
+							{/* Row capped in width so Key details sits nearer the description */}
+							<div className="flex flex-col gap-10 lg:max-w-[1000px] lg:flex-row lg:gap-12">
 								<WireframeSection label="Key details" className="order-first w-full lg:order-last lg:w-56 lg:shrink-0">
 									<h2 className="font-mono text-section font-medium tracking-tight text-gray-900 mb-4">Key details</h2>
 									<KeyDetails />
