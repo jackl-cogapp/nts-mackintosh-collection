@@ -92,10 +92,6 @@ function ObjectInfoFields() {
 	return (
 		<div className="max-w-prose">
 			<div className="grid grid-cols-2 gap-x-8 gap-y-6">
-				<ObjectInfoField label="Date">{ITEM.date}</ObjectInfoField>
-				<ObjectInfoField label="Maker/Creator">
-					<LinkList items={ITEM.creators.map((c) => <><FieldLink>{c.name}</FieldLink> ({c.role})</>)} />
-				</ObjectInfoField>
 				<ObjectInfoField label="Materials">
 					<LinkList items={ITEM.materials.map((m) => <FieldLink>{m}</FieldLink>)} />
 				</ObjectInfoField>
@@ -106,10 +102,6 @@ function ObjectInfoFields() {
 
 			{expanded && (
 				<div className="mt-6 grid grid-cols-2 gap-x-8 gap-y-6 border-t border-gray-200 pt-6">
-					<ObjectInfoField label="On display">{ITEM.onDisplay ? "Yes" : "No"}</ObjectInfoField>
-					<ObjectInfoField label="Category">
-						{ITEM.category ? <FieldLink>{ITEM.category}</FieldLink> : <Dash />}
-					</ObjectInfoField>
 					<ObjectInfoField label="Themes">
 						<LinkList items={ITEM.themes.map((th) => <FieldLink>{th}</FieldLink>)} />
 					</ObjectInfoField>
