@@ -138,8 +138,8 @@ function ObjectInfoFields() {
 
 function KeyDetail({ label, children }: { label: string; children: ReactNode }) {
 	return (
-		<div className="border-b border-gray-200 py-3 first:pt-0 last:border-b-0">
-			<dt className="mb-1 font-mono text-label uppercase tracking-[0.08em] text-gray-500">{label}</dt>
+		<div>
+			<dt className="mb-1 font-mono text-body font-semibold text-gray-900">{label}</dt>
 			<dd className="font-mono text-meta text-gray-800">{children}</dd>
 		</div>
 	);
@@ -147,7 +147,7 @@ function KeyDetail({ label, children }: { label: string; children: ReactNode }) 
 
 function KeyDetails() {
 	return (
-		<dl>
+		<dl className="space-y-4 bg-gray-100 p-5">
 			<KeyDetail label="Creator/Maker">
 				<ul className="space-y-1">
 					{ITEM.creators.map((c) => (
