@@ -26,6 +26,10 @@ const ITEM = {
 	period: "Early 20th century",
 	date: "1905",
 	onDisplay: false,
+	location: {
+		name: "The Hill House",
+		href: "https://www.nts.org.uk/visit/places/the-hill-house",
+	},
 	acquisition: "",
 	category: "Furniture",
 	materials: ["Sycamore", "Mother of Pearl"],
@@ -132,6 +136,49 @@ function ObjectInfoFields() {
 	);
 }
 
+function KeyDetail({ label, children }: { label: string; children: ReactNode }) {
+	return (
+		<div className="border-b border-gray-200 py-3 first:pt-0 last:border-b-0">
+			<dt className="mb-1 font-mono text-label uppercase tracking-[0.08em] text-gray-500">{label}</dt>
+			<dd className="font-mono text-meta text-gray-800">{children}</dd>
+		</div>
+	);
+}
+
+function KeyDetails() {
+	return (
+		<dl>
+			<KeyDetail label="Creator/Maker">
+				<ul className="space-y-1">
+					{ITEM.creators.map((c) => (
+						<li key={c.name}>
+							<FieldLink>{c.name}</FieldLink> <span className="text-gray-500">({c.role})</span>
+						</li>
+					))}
+				</ul>
+			</KeyDetail>
+			<KeyDetail label="Date">{ITEM.date}</KeyDetail>
+			<KeyDetail label="Location">
+				<a
+					href={ITEM.location.href}
+					target="_blank"
+					rel="noopener noreferrer"
+					title={`Visit ${ITEM.location.name} on nts.org.uk`}
+					className="underline text-gray-700 hover:text-black"
+				>
+					{ITEM.location.name}
+					<span aria-hidden="true"> ↗</span>
+					<span className="sr-only"> (opens the NTS place page in a new tab)</span>
+				</a>
+			</KeyDetail>
+			<KeyDetail label="On display">{ITEM.onDisplay ? "Yes" : "No"}</KeyDetail>
+			<KeyDetail label="Object category">
+				<FieldLink>{ITEM.category}</FieldLink>
+			</KeyDetail>
+		</dl>
+	);
+}
+
 // ── Page ────────────────────────────────────────────────────────────────
 
 export default function CRMItemPage() {
@@ -198,10 +245,7 @@ export default function CRMItemPage() {
 							<div className="flex flex-col gap-10 lg:flex-row lg:gap-12">
 								<WireframeSection label="Key details" className="order-first w-full lg:order-last lg:w-56 lg:shrink-0">
 									<h2 className="font-mono text-section font-medium tracking-tight text-gray-900 mb-4">Key details</h2>
-									{/* Fields to be decided */}
-									<div className="flex items-center justify-center border-2 border-gray-300 py-16">
-										<p className="font-mono text-page font-semibold tracking-tight text-gray-400">TBD</p>
-									</div>
+									<KeyDetails />
 								</WireframeSection>
 								<div className="min-w-0 flex-1">
 									<WireframeSection label="Description">
