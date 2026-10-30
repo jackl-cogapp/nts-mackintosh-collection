@@ -14,7 +14,22 @@ import { ScopePage } from "@/providers/ScopeProvider";
 const VARIATIONS = [
 	{ key: "object-page", label: "Object Page" },
 	{ key: "metadata", label: "Metadata" },
+	{ key: "priority-list", label: "Priority list" },
 ] as const;
+
+// Onward journeys blocks (NTS11-59): one card for every kind of destination,
+// in NTS's priority order. The first four show; the next four sit behind "See more".
+// `label` says what the link is; `meta` says what kind of page it opens.
+const PRIORITY_JOURNEYS = [
+	{ label: "Learning resource", title: "Designing for The Hill House", meta: "Learning resource · Ages 11–14", image: "[Image]" },
+	{ label: "Article", title: "Light and shadow: Mackintosh's Hill House lamps", meta: "Article · 6 min read", image: "[Image]" },
+	{ label: "Article", title: "10 objects to see at The Hill House", meta: "Article · 8 min read", image: "[Image]" },
+	{ label: "Video", title: "How the standard lamp was conserved", meta: "Video · 4:12", image: "[▶ Video]" },
+	{ label: "Audio", title: "The lamps of The Hill House", meta: "Audio · 3:05", image: "[♪ Audio]" },
+	{ label: "Related object: Same motif", title: "Writing Cabinet", meta: "Object · Furniture, 1904", image: "[Image]" },
+	{ label: "Theme: Lighting", title: "Hall Lantern", meta: "Object · Lighting, 1904", image: "[Image]" },
+	{ label: "Designer: Charles Rennie Mackintosh", title: "Ladder-back Chair", meta: "Object · Furniture, 1903", image: "[Image]" },
+];
 
 // Onward journeys by metadata (NTS11-44): each card leads to another object
 // that shares one metadata value with this one
@@ -163,6 +178,53 @@ function ObjectInfoFields() {
 	);
 }
 
+// One card for objects, articles, learning resources, video and audio alike
+function JourneyCard({ journey }: { journey: (typeof PRIORITY_JOURNEYS)[number] }) {
+	return (
+		<a
+			href="#"
+			className="group flex flex-col border border-gray-300 hover:border-gray-500 hover:bg-gray-50"
+		>
+			<ImagePlaceholder className="w-full" aspect="1/1" label={journey.image} />
+			<span className="flex flex-1 flex-col gap-1 p-4">
+				<span className="font-mono text-label uppercase tracking-[0.08em] text-gray-500">
+					{journey.label}
+				</span>
+				<span className="font-mono text-card font-medium leading-snug tracking-tight text-gray-900 group-hover:underline">
+					{journey.title}
+				</span>
+				<span className="mt-auto pt-2 font-mono text-label text-gray-400">{journey.meta}</span>
+			</span>
+		</a>
+	);
+}
+
+function PriorityJourneys() {
+	const [expanded, setExpanded] = useState(false);
+	const firstRow = PRIORITY_JOURNEYS.slice(0, 4);
+	const secondRow = PRIORITY_JOURNEYS.slice(4, 8);
+	return (
+		<>
+			<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+				{firstRow.map((j) => <JourneyCard key={j.title} journey={j} />)}
+			</div>
+			{expanded && (
+				<div className="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+					{secondRow.map((j) => <JourneyCard key={j.title} journey={j} />)}
+				</div>
+			)}
+			<button
+				type="button"
+				onClick={() => setExpanded((e) => !e)}
+				aria-expanded={expanded}
+				className="mt-6 flex items-center gap-1 font-mono text-meta text-gray-600 underline hover:text-black"
+			>
+				{expanded ? "▲ See less" : "▼ See more"}
+			</button>
+		</>
+	);
+}
+
 // ── Page ────────────────────────────────────────────────────────────────
 
 // Onward Journeys: started as a copy of the Object Page
@@ -264,7 +326,7 @@ function OnwardJourneysContent() {
 					</div>
 
 				{/* More by this creator (Object Page tab only) */}
-				{variation !== "metadata" && (
+				{variation === "object-page" && (
 					<WireframeSection label="More by this creator" className="border-b border-gray-200 px-6 py-10">
 						<Container size="lg">
 							<h2 className="font-mono text-section font-medium tracking-tight text-gray-900 mb-6">You might also like</h2>
@@ -311,6 +373,21 @@ function OnwardJourneysContent() {
 									</a>
 								))}
 							</div>
+						</Container>
+					</WireframeSection>
+				)}
+
+				{/* Onward journeys blocks in priority order (Priority list tab) */}
+				{variation === "priority-list" && (
+					<WireframeSection
+						label="Onward journeys"
+						className="border-b border-gray-200 px-6 py-10"
+					>
+						<Container size="lg">
+							<h2 className="font-mono text-section font-medium tracking-tight text-gray-900 mb-6">
+								Explore further
+							</h2>
+							<PriorityJourneys />
 						</Container>
 					</WireframeSection>
 				)}
