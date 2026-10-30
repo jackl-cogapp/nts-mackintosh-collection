@@ -18,15 +18,16 @@ const VARIATIONS = [
 ] as const;
 
 // Onward journeys blocks (NTS11-59): one card for every kind of destination,
-// in NTS's priority order. The first four show; the next four sit behind "See more".
+// in NTS's priority order. The first row shows one each of learning resource,
+// article, video and object; the rest follow in priority order behind "See more".
 // `label` says what the link is; `meta` says what kind of page it opens.
 const PRIORITY_JOURNEYS = [
 	{ label: "Learning resource", title: "Designing for The Hill House", meta: "Learning resource · Ages 11–14", image: "[Image]" },
 	{ label: "Article", title: "Light and shadow: Mackintosh's Hill House lamps", meta: "Article · 6 min read", image: "[Image]" },
-	{ label: "Article", title: "10 objects to see at The Hill House", meta: "Article · 8 min read", image: "[Image]" },
 	{ label: "Video", title: "How the standard lamp was conserved", meta: "Video · 4:12", image: "[▶ Video]" },
-	{ label: "Audio", title: "The lamps of The Hill House", meta: "Audio · 3:05", image: "[♪ Audio]" },
 	{ label: "Related object: Same motif", title: "Writing Cabinet", meta: "Object · Furniture, 1904", image: "[Image]" },
+	{ label: "Article", title: "10 objects to see at The Hill House", meta: "Article · 8 min read", image: "[Image]" },
+	{ label: "Audio", title: "The lamps of The Hill House", meta: "Audio · 3:05", image: "[♪ Audio]" },
 	{ label: "Theme: Lighting", title: "Hall Lantern", meta: "Object · Lighting, 1904", image: "[Image]" },
 	{ label: "Designer: Charles Rennie Mackintosh", title: "Ladder-back Chair", meta: "Object · Furniture, 1903", image: "[Image]" },
 ];
