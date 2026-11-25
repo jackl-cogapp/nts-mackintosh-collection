@@ -143,6 +143,14 @@ export const pages: WireframePage[] = [
 		status: "wip",
 		group: "Ideas",
 	},
+	{
+		id: "object-page-option-one",
+		title: "Object Page — Option One",
+		description:
+			"Working build of the Option One object page design: zoomable image viewer, transcript, key details and object information",
+		status: "wip",
+		group: "Ideas",
+	},
 ];
 
 export const PAGE_GROUPS = ["MVP", "Post-MVP", "Ideas"] as const;
@@ -174,6 +182,7 @@ export const navigation: NavNode[] = [
 			{ label: "Embeddable Object Components", href: "/object-embeds" },
 			{ label: "Interior Photos", href: "/interior-photos" },
 			{ label: "Object Page — Tombstone", href: "/object-page-tombstone" },
+			{ label: "Object Page — Option One", href: "/object-page-option-one" },
 		],
 	},
 ];
